@@ -1,0 +1,12 @@
+.inputContainer input {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 3rem;
+  border-radius: 10px;
+}
+.inputContainer input::placeholder {
+  color: red;
+}
+
+/*# sourceMappingURL=inputComponent.module.css.map */

@@ -1,0 +1,19 @@
+.btnContainer {
+  .btnUi {
+    background-color: transparent;
+    border-radius: 10px;
+    color: #008793;
+    width: 20rem;
+    height: 3.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: #008793 2px solid;
+    transition: all 0.3s ease 0s;
+    letter-spacing: 0.5px;
+    &:hover {
+      background-color: #008793;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+  }
+}

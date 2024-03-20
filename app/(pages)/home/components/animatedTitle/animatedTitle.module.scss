@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../../../assets/fonts/Montserrat-Bold.ttf");
+}
+.animatedTitleContainer {
+  width: 90%;
+  margin: auto;
+  overflow-x: visible;
+  h1 {
+    color: #fff;
+    font-size: 9rem;
+    transform: translateX(-100%);
+    font-family: Montserrat, sans-serif;
+    font-weight: 900;
+    text-shadow: 1px 0 0 #202020, -1px 0 0 #202020, 0 1px 0 #202020,
+      0 -1px 0 #202020, 1px 1px 0 #202020, -1px -1px 0 #202020,
+      1px -1px 0 #202020, -1px 1px 0 #202020, 1px 1px 2px #202020;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    overflow-x: visible;
+    text-transform: uppercase;
+  }
+}

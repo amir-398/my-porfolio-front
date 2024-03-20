@@ -1,0 +1,21 @@
+.presentationSectionContainer .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.presentationSectionContainer .container div p {
+  color: #fff;
+  font-family: spaceMono;
+  font-size: 0.9rem;
+}
+.presentationSectionContainer .container div .amirImgContainer {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.presentationSectionContainer .container .left {
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=presentationSection.module.css.map */

@@ -1,0 +1,23 @@
+.presentationSectionContainer {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      p {
+        color: #fff;
+        font-family: spaceMono;
+        font-size: 0.9rem;
+      }
+      .amirImgContainer {
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    }
+    .left {
+      padding: 1rem;
+    }
+  }
+}

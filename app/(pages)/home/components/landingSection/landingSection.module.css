@@ -1,0 +1,63 @@
+.earthImg {
+  position: absolute;
+  right: 0;
+}
+
+.landingSectionContainer {
+  height: 100vh;
+  min-height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.landingSectionContainer h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  background: -webkit-linear-gradient(45deg, #051937 0%, #004d7a 20%, #008793 60%, #00bf72 70%, #a8eb12 100%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 1.8px;
+}
+.landingSectionContainer h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+}
+.landingSectionContainer h3 {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 1.8px;
+}
+.landingSectionContainer .btnContainer {
+  position: relative;
+  top: 5rem;
+}
+.landingSectionContainer .rocketImg {
+  position: absolute;
+  right: 10%;
+  top: 80%;
+  animation: 10s infinite rocketAnim;
+}
+@keyframes rocketAnim {
+  0% {
+    transform: rotate(45deg) translateX(0);
+  }
+  50% {
+    transform: rotate(45deg) translateX(1.5rem);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+/*# sourceMappingURL=landingSection.module.css.map */

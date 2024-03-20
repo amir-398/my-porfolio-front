@@ -1,0 +1,34 @@
+.projectCardContainer {
+  margin: 4rem 0;
+  width: 100%;
+  height: 20rem;
+  background: -webkit-linear-gradient(
+    45deg,
+    #051937 0%,
+    #004d7a 20%,
+    #008793 60%,
+    #00bf72 70%,
+    #a8eb12 100%
+  );
+  border-radius: 20px;
+  display: flex;
+  padding: 1rem;
+  div {
+    width: 50%;
+    display: flex;
+    &:nth-child(1) {
+      flex-direction: column;
+      justify-content: space-between;
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
+    &:nth-child(2) {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
