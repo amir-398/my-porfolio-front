@@ -29,7 +29,7 @@ export default function ProjectCard(props: ProjectCardProps) {
             transition: "transform 0.5s",
           });
           // Optionnel : vous pouvez arrêter d'observer après la première animation
-          observer.unobserve(animatedContainerRef.current);
+          observer.unobserve(animatedContainerRef.current as Element);
         }
       },
       {
