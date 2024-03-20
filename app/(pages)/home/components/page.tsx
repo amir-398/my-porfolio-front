@@ -1,5 +1,5 @@
 import LandingSection from "./landingSection/LandingSection";
-import MyProjectsSection from "./myProjectsSection/myProjectsSection";
+import MyProjectsSection from "./myProjectsSection/MyProjectsSection";
 import PresentationSection from "./presentationSection/PresentationSection";
 
 export default function Home() {
