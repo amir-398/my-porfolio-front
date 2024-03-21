@@ -1,8 +1,4 @@
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegister,
-} from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import style from "./inputComponent.module.css";
 interface InputComponentProps {
   type: string;
@@ -19,18 +15,14 @@ const InputComponent: React.FC<InputComponentProps> = ({
   placeholderText,
   errors,
 }) => {
-  console.log(errors);
-
   return (
     <>
       {type != "textarea" ? (
-        
         <input
           className={style.inputComponent}
           {...register(registerText, { required: true })}
           type={type}
           name={registerText}
-          placeholder={"sssssssssssss"}
         />
       ) : (
         <textarea
@@ -43,7 +35,9 @@ const InputComponent: React.FC<InputComponentProps> = ({
         />
       )}
       {errors[registerText] && (
-        <p className={style.error}>{errors[registerText].message}</p>
+        <p className={style.error}>
+          {errors[registerText]?.message?.toString() || ""}
+        </p>
       )}
     </>
   );
