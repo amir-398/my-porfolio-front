@@ -19,6 +19,12 @@ const schema = yup.object({
   email: yup.string().email().required("lol"),
   message: yup.string().required("lol"),
 });
+
+interface ContactFormFields {
+  firstname: string;
+  email: string;
+  message: string;
+}
 export default function ContactComponent() {
   const {
     register,
@@ -29,10 +35,7 @@ export default function ContactComponent() {
   });
   const componentRef = useRef(null);
 
-  const name = useRef(null);
-  const email = useRef(null);
-  const message = useRef(null);
-  const onSubmit = (values) => {
+  const onSubmit = (values: ContactFormFields) => {
     console.log(values);
   };
 
