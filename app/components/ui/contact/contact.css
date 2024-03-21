@@ -1,0 +1,173 @@
+.contactContainer {
+  background-image: url("../../assets/pics/bck.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding-right: 15px;
+}
+
+.formContainer {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.formContainer h2 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: 20px;
+}
+.formContainer form input, .formContainer form textarea {
+  width: 100%;
+  height: 60px;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.formContainer form input::placeholder, .formContainer form textarea::placeholder {
+  color: white;
+  font-weight: 500;
+}
+.formContainer form textarea {
+  height: 15rem;
+}
+.formContainer form .submitBtn {
+  padding: 10px 30px;
+  margin-top: 1rem;
+  font-size: 20px;
+}
+
+.astroContainer {
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  align-items: flex-end;
+  z-index: 0;
+}
+.astroContainer img:not(:last-child) {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  animation: 6s infinite planet;
+}
+
+.planet1 {
+  width: 2rem !important;
+  height: 2rem !important;
+  top: 50%;
+  right: 20%;
+}
+
+.planet2 {
+  height: 4rem !important;
+  bottom: 30%;
+  left: 10%;
+}
+
+.planet3 {
+  top: 10%;
+  right: 10%;
+}
+
+.planet4 {
+  bottom: 20%;
+  left: 80%;
+}
+
+.planet5 {
+  height: 10rem !important;
+  width: 10rem !important;
+  top: 10%;
+  left: 10%;
+}
+
+.planet6 {
+  width: 8rem !important;
+  height: 8rem !important;
+  top: 30%;
+  right: 30%;
+}
+
+@keyframes planet {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+@media screen and (max-width : 1024px) {
+  .formContainer h2 {
+    font-size: 2rem;
+  }
+  .formContainer form .submitBtn {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width : 768px) {
+  .contactContainer {
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+  .overlay {
+    height: 100%;
+  }
+  .formContainer {
+    width: 100%;
+    margin-top: 2rem;
+    z-index: 1;
+  }
+  .formContainer h2 {
+    font-size: 1.5rem;
+  }
+  .astroContainer {
+    width: 100%;
+  }
+  .btn-3 {
+    font-size: 12px;
+  }
+  .planet3 {
+    top: 0;
+  }
+  .planet4 {
+    top: 5%;
+    left: 10%;
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  .planet2 {
+    width: 2rem;
+    height: 2rem;
+    bottom: 10%;
+    left: 2%;
+  }
+  .planet5, .planet6, .planet1 {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=contact.css.map */

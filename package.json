@@ -7,17 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "watch:scss": "npm-run-all --parallel login inputComponent btn landingSection header pageContainer presentationSection animatedTitle myProjectsSection projectCard ",
+    "watch:scss": "npm-run-all --parallel login inputComponent btn landingSection header pageContainer presentationSection animatedTitle myProjectsSection projectCard skillsSection skillCard contactSection contactComponent",
     "login": "sass --watch ./app/(pages)/login/page.module.scss ./app/(pages)/login/page.module.css",
     "landingSection": "sass --watch ./app/(pages)/home/components/landingSection/landingSection.module.scss ./app/(pages)/home/components/landingSection/landingSection.module.css",
     "presentationSection": "sass --watch ./app/(pages)/home/components/presentationSection/presentationSection.module.scss ./app/(pages)/home/components/presentationSection/presentationSection.module.css",
     "myProjectsSection": "sass --watch ./app/(pages)/home/components/myProjectsSection/myProjectsSection.module.scss ./app/(pages)/home/components/myProjectsSection/myProjectsSection.module.css",
+    "skillsSection": "sass --watch ./app/(pages)/home/components/skillsSection/skillsSection.module.scss ./app/(pages)/home/components/skillsSection/skillsSection.module.css",
+    "contactSection": "sass --watch ./app/(pages)/home/components/contactSection/contactSection.module.scss ./app/(pages)/home/components/contactSection/contactSection.module.css",
+    "skillCard": "sass --watch ./app/(pages)/home/components/skillsSection/components/skillCard/skillCard.module.scss ./app/(pages)/home/components/skillsSection/components/skillCard/skillCard.module.css",
     "projectCard": "sass --watch ./app/(pages)/home/components/myProjectsSection/components/projectCard/projectCard.module.scss ./app/(pages)/home/components/myProjectsSection/components/projectCard/projectCard.module.css",
     "animatedTitle": "sass --watch ./app/(pages)/home/components/animatedTitle/animatedTitle.module.scss ./app/(pages)/home/components/animatedTitle/animatedTitle.module.css",
     "btn": "sass --watch ./app/components/ui/btn/btn.module.scss ./app/components/ui/btn/btn.module.css",
+    "inputComponent": "sass --watch ./app/components/ui/inputComponent/inputComponent.module.scss ./app/components/ui/inputComponent/inputComponent.module.css",
+    "contactComponent": "sass --watch ./app/components/ui/contactComponent/contactComponent.module.scss ./app/components/ui/contactComponent/contactComponent.module.css",
     "header": "sass --watch ./app/components/ui/header/header.module.scss ./app/components/ui/header/header.module.css",
-    "pageContainer": "sass --watch ./app/components/ui/pageContainer/pageContainer.module.scss ./app/components/ui/pageContainer/pageContainer.module.css",
-    "inputComponent": "sass --watch ./src/app/components/inputComponent/inputComponent.module.scss ./src/app/components/inputComponent/inputComponent.module.css"
+    "pageContainer": "sass --watch ./app/components/ui/pageContainer/pageContainer.module.scss ./app/components/ui/pageContainer/pageContainer.module.css"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -28,6 +32,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
+    "react-icons": "^5.0.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {

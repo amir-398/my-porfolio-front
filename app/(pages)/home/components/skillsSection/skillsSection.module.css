@@ -1,4 +1,4 @@
-.myProjectContainer h3 {
+.skillsSectionContainer .titleContainer h3 {
   color: #ba68c8;
   font-size: 0.8rem;
   font-family: Montserrat, sans-serif;
@@ -9,12 +9,17 @@
   border-radius: 20px;
   width: fit-content;
 }
-.myProjectContainer h2 {
+.skillsSectionContainer .titleContainer h2 {
   font-size: 2rem;
   font-family: Montserrat, sans-serif;
   font-weight: 900;
   color: #fff;
   margin: 1rem 0;
 }
+.skillsSectionContainer .skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
 
-/*# sourceMappingURL=myProjectsSection.module.css.map */
+/*# sourceMappingURL=skillsSection.module.css.map */

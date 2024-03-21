@@ -1,0 +1,14 @@
+.skillCard {
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+}

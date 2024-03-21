@@ -6,7 +6,6 @@ export default function PresentationSection() {
   return (
     <PageContainer>
       <div className={style.presentationSectionContainer}>
-        <h1>Qui suis je ?</h1>
         <div className={style.container}>
           <div className={style.left}>
             <p>

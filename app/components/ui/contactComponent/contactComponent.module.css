@@ -1,0 +1,91 @@
+.contactContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 110%;
+  transform: translateX(-4rem);
+  height: 100vh;
+}
+.contactContainer .formContainer {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contactContainer .formContainer h2 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.contactContainer .formContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: 20px;
+}
+.contactContainer .astroContainer {
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+.contactContainer .astroContainer .astroImg {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: 0;
+}
+.contactContainer .astroContainer img:not(:last-child) {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  animation: 6s infinite planet;
+}
+.contactContainer .astroContainer .planet01 {
+  position: absolute;
+  width: 2rem !important;
+  height: 2rem !important;
+  top: 50%;
+  right: 20%;
+}
+.contactContainer .astroContainer .planet02 {
+  height: 4rem !important;
+  bottom: 30%;
+  left: 10%;
+}
+.contactContainer .astroContainer .planet03 {
+  top: 10%;
+  right: 10%;
+}
+.contactContainer .astroContainer .planet04 {
+  bottom: 20%;
+  left: 80%;
+}
+.contactContainer .astroContainer .planet05 {
+  height: 10rem !important;
+  width: 10rem !important;
+  top: 10%;
+  left: 10%;
+}
+.contactContainer .astroContainer .planet06 {
+  width: 8rem !important;
+  height: 8rem !important;
+  top: 30%;
+  right: 30%;
+}
+@keyframes planet {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+/*# sourceMappingURL=contactComponent.module.css.map */

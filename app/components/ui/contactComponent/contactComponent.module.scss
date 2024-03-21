@@ -1,0 +1,164 @@
+// @import "../../cssConstants/responsive.scss";
+// @import "../../cssConstants/colors.scss";
+
+.contactContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 110%;
+  transform: translateX(-4rem);
+  height: 100vh;
+
+  // form section
+  .formContainer {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      color: white;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      gap: 20px;
+    }
+  }
+
+  .astroContainer {
+    display: flex;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    .astroImg {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      object-fit: cover;
+      z-index: 0;
+    }
+    img:not(:last-child) {
+      position: absolute;
+      width: 5rem;
+      height: 5rem;
+      animation: 6s infinite planet;
+    }
+    .planet01 {
+      position: absolute;
+      width: 2rem !important;
+      height: 2rem !important;
+      top: 50%;
+      right: 20%;
+    }
+    .planet02 {
+      // violet planet
+      height: 4rem !important;
+      bottom: 30%;
+      left: 10%;
+    }
+    .planet03 {
+      // orange planet
+      top: 10%;
+      right: 10%;
+    }
+    .planet04 {
+      //pink planet
+      bottom: 20%;
+      left: 80%;
+    }
+    .planet05 {
+      //big yellow and pink planet
+      height: 10rem !important;
+      width: 10rem !important ;
+      top: 10%;
+      left: 10%;
+    }
+    .planet06 {
+      //white and blue planet
+      width: 8rem !important;
+      height: 8rem !important;
+      top: 30%;
+      right: 30%;
+    }
+  }
+
+  @keyframes planet {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(7px);
+    }
+  }
+}
+// responsive md
+// @media #{$md-media}{
+//     .formContainer{
+//         h2 {
+//             font-size: 2rem;
+//         }
+//         form {
+//             .submitBtn{
+//                 font-size: 15px;
+//             }
+//         }
+
+//     }
+
+// }
+// // responsive xs
+// @media #{$sm-media}{
+//     .contactContainer{
+//         height: 100%;
+//         padding: 0;
+//         display: flex;
+//         flex-direction: column-reverse;
+//         justify-content: center;
+
+//     }
+//     .overlay {
+//         height: 100%;
+//       }
+//     .formContainer{
+//         width: 100%;
+//         margin-top: 2rem;
+//         z-index: 1;
+//         h2 {
+//             font-size: 1.5rem;
+//         }
+//     }
+//     .astroContainer {
+//         width: 100%;
+//     }
+//     .btn-3{
+//         font-size: 12px;
+//     }
+//     .planet3 {
+//         top: 0;
+//     }
+//     .planet4 {
+//         top: 5%;
+//         left: 10%;
+//         width: 3rem !important;
+//         height: 3rem !important;
+//     }
+//     .planet2{
+//         width: 2rem;
+//         height: 2rem;
+//         bottom: 10%;
+//         left: 2%;
+//     }
+
+//     .planet5, .planet6, .planet1 {
+//         display: none;
+//     }
+// }

@@ -12,25 +12,20 @@ interface ProjectCardProps {
 
 export default function ProjectCard(props: ProjectCardProps) {
   const { title, description, image } = props;
-  const animatedContainerRef = useRef<HTMLDivElement | null>(null);
-  const [animatedStyle, setAnimatedStyle] = useState({
-    transform: "scale(0.8)",
-    opacity: 0,
-    transition: "transform 0.5s",
-  });
+  const animatedContainerRef = useRef<HTMLDivElement>(null);
+  const [isCardVisible, setIsCardVisible] = useState<boolean | undefined>(
+    undefined
+  );
+
   useEffect(() => {
+    const animatedContainerRefCurrent = animatedContainerRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         // L'élément devient visible
-        if (entry.isIntersecting) {
-          setAnimatedStyle({
-            transform: "scale(1)",
-            opacity: 1,
-            transition: "transform 0.5s",
-          });
-          // Optionnel : vous pouvez arrêter d'observer après la première animation
-          observer.unobserve(animatedContainerRef.current as Element);
-        }
+
+        setIsCardVisible(entry.isIntersecting);
+        // Optionnel : vous pouvez arrêter d'observer après la première animation
+        // observer.unobserve(animatedContainerRefCurrent as Element);
       },
       {
         threshold: 0.3, // 30% de l'élément est visible
@@ -38,21 +33,27 @@ export default function ProjectCard(props: ProjectCardProps) {
     );
 
     if (animatedContainerRef.current) {
-      observer.observe(animatedContainerRef.current);
+      observer.observe(animatedContainerRefCurrent as Element);
     }
 
     return () => {
-      if (animatedContainerRef.current) {
-        observer.unobserve(animatedContainerRef.current);
+      if (animatedContainerRefCurrent) {
+        observer.unobserve(animatedContainerRefCurrent as Element);
       }
     };
   }, []);
 
   return (
     <div
-      className={style.projectCardContainer}
+      className={[
+        style.projectCardContainer,
+        isCardVisible
+          ? style.projectCardVisible
+          : isCardVisible != undefined
+          ? style.projectCardInvisible
+          : undefined,
+      ].join(" ")}
       ref={animatedContainerRef}
-      style={animatedStyle}
     >
       <div>
         <h4>{title}</h4>
@@ -65,3 +66,34 @@ export default function ProjectCard(props: ProjectCardProps) {
     </div>
   );
 }
+
+// const handleScrollAnimationCard = () => {
+//   const animatedContainerRefCurrent = animatedContainerRef.current;
+//   const observer = new IntersectionObserver(
+//     ([entry]) => {
+//       // L'élément devient visible
+
+//       if (entry.isIntersecting) {
+//         console.log(entry.isVisible);
+//         setIsCardVisible(true);
+//         // Optionnel : vous pouvez arrêter d'observer après la première animation
+//         observer.unobserve(animatedContainerRefCurrent as Element);
+//       }
+//     },
+//     {
+//       threshold: 0.3, // 30% de l'élément est visible
+//     }
+//   );
+
+//   if (animatedContainerRef.current) {
+//     observer.observe(animatedContainerRefCurrent as Element);
+//   }
+
+//   return () => {
+//     if (animatedContainerRefCurrent) {
+//       observer.unobserve(animatedContainerRefCurrent as Element);
+//     }
+//   };
+// };
+
+// window.addEventListener("scroll", handleScrollAnimationCard);
