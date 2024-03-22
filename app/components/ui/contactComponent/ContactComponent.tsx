@@ -15,9 +15,9 @@ import Btn from "../btn/Btn";
 import InputComponent from "../inputComponent/InputComponent";
 import style from "./contactComponent.module.css";
 const schema = yup.object({
-  firstname: yup.string().required("lol"),
-  email: yup.string().email().required("lol"),
-  message: yup.string().required("lol"),
+  firstname: yup.string().required("Champ obligatoire !"),
+  email: yup.string().email().required("Champ obligatoire !"),
+  message: yup.string().required("Champ obligatoire !"),
 });
 
 interface ContactFormFields {
@@ -67,7 +67,7 @@ export default function ContactComponent() {
             errors={errors}
           />
           <InputComponent
-            placeholderText="message"
+            placeholderText="Message"
             register={register}
             registerText="message"
             type="textarea"
