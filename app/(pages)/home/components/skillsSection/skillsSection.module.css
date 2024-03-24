@@ -1,3 +1,6 @@
+.skillsSectionContainer {
+  margin: 3rem 0;
+}
 .skillsSectionContainer .titleContainer h3 {
   color: #ba68c8;
   font-size: 0.8rem;

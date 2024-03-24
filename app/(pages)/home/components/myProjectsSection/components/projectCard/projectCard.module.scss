@@ -1,3 +1,4 @@
+@import "../../../../../../style_constants/RESPONSIVE";
 .projectCardContainer {
   margin: 4rem 0;
   width: 100%;
@@ -13,9 +14,16 @@
   border-radius: 20px;
   display: flex;
   padding: 1rem;
+  @media #{$sm-media} {
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
   div {
     width: 50%;
     display: flex;
+    @media #{$sm-media} {
+      width: 100%;
+    }
     &:nth-child(1) {
       flex-direction: column;
       justify-content: space-between;

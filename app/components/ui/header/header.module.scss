@@ -1,4 +1,37 @@
 @import "../../../style_constants/COLORS";
+@import "../../../style_constants/RESPONSIVE";
+@mixin navList {
+  .navList {
+    display: flex;
+    gap: 2rem;
+    li {
+      color: white;
+      position: relative;
+      list-style-type: none;
+      cursor: pointer;
+      &::after {
+        content: "";
+        width: 0%;
+        height: 3px;
+        background-color: $primaryColor;
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        border-radius: 10px;
+        transition: all 500ms ease-out;
+      }
+      &:hover {
+        transition: 0.3s;
+        color: $primaryColor;
+        font-weight: bold;
+        &::after {
+          width: 100%;
+          left: 0%;
+        }
+      }
+    }
+  }
+}
 .header {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -8,47 +41,48 @@
   .headerContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     //center
     .center {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      ul {
-        display: flex;
-        gap: 2rem;
-        li {
-          color: white;
-          position: relative;
-          list-style-type: none;
-          cursor: pointer;
-          &::after {
-            content: "";
-            width: 0%;
-            height: 3px;
-            background-color: $primaryColor;
-            position: absolute;
-            bottom: 0%;
-            left: 50%;
-            border-radius: 10px;
-            transition: all 500ms ease-out;
-          }
-          &:hover {
-            transition: 0.3s;
-            color: $primaryColor;
-            font-weight: bold;
-            &::after {
-              width: 100%;
-              left: 0%;
-            }
-          }
-        }
+      @media #{ $md-media } {
+        display: none;
       }
+      @include navList;
     }
     // right
     .right {
       display: flex;
       align-items: center;
+      @media #{ $md-media } {
+        display: none;
+      }
+    }
+    .rightMobile {
+      display: none;
+
+      @media #{ $md-media } {
+        display: block;
+      }
+    }
+  }
+  .hamburgerMenu {
+    backdrop-filter: blur(10px);
+    width: 100vh;
+    margin-top: -5px;
+    > div {
+      > nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 1.2rem;
+        gap: 2rem;
+      }
     }
   }
 }

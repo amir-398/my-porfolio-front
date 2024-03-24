@@ -4,13 +4,11 @@
   src: url("../../../../assets/fonts/Montserrat-Bold.ttf");
 }
 .animatedTitleContainer {
-  width: 90%;
-  margin: auto;
   overflow-x: visible;
 }
 .animatedTitleContainer h1 {
   color: #fff;
-  font-size: 9rem;
+  font-size: 7rem;
   transform: translateX(-100%);
   font-family: Montserrat, sans-serif;
   font-weight: 900;

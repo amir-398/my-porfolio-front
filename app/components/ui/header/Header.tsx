@@ -1,9 +1,14 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { slide as Menu } from "react-burger-menu";
+import { RxHamburgerMenu } from "react-icons/rx";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className={style.header}>
       <PageContainer>
@@ -12,7 +17,7 @@ export default function Header() {
             <Image src={logo} alt="logo" width={100} height={100} />
           </div>
           <div className={style.center}>
-            <ul>
+            <ul className={style.navList}>
               <li>Accueil</li>
               <li>À propos</li>
               <li>Mes projets</li>
@@ -45,8 +50,33 @@ export default function Header() {
               </span>
             </label>
           </div>
+          <div className={style.rightMobile}>
+            <RxHamburgerMenu
+              color="red"
+              size={30}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            />
+          </div>
         </div>
       </PageContainer>
+      <Menu
+        className={style.hamburgerMenu}
+        isOpen={isMenuOpen}
+        width={"100%"}
+        noOverlay
+        disableOverlayClick
+        styles={{
+          bmBurgerButton: {
+            display: "none !important",
+          },
+        }}
+      >
+        <Link href={"/"}>Accueil</Link>
+        <Link href={"/"}>À propos</Link>
+        <Link href={"/"}>Mes projets</Link>
+        <Link href={"/"}>Mes compétences</Link>
+        <Link href={"/"}>Contact</Link>
+      </Menu>
     </header>
   );
 }

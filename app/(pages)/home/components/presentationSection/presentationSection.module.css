@@ -1,7 +1,15 @@
 .presentationSectionContainer .container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+.presentationSectionContainer .container h2 {
+  align-self: flex-start;
+}
+@media screen and (max-width : 768px) {
+  .presentationSectionContainer .container {
+    flex-direction: column;
+  }
 }
 .presentationSectionContainer .container div p {
   color: #fff;

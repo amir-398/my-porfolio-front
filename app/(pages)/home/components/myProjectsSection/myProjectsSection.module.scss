@@ -1,4 +1,6 @@
+@import "../../../../style_constants/MARGINS";
 .myProjectContainer {
+  margin: $marginVertical 0;
   h3 {
     color: #ba68c8;
     font-size: 0.8rem;
