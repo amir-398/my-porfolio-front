@@ -3,8 +3,10 @@
   font-family: "Montserrat";
   src: url("../../../../assets/fonts/Montserrat-Bold.ttf");
 }
-.animatedTitleContainer {
-  overflow-x: visible;
+@media screen and (max-width : 1025px) {
+  .animatedTitleContainer {
+    display: none;
+  }
 }
 .animatedTitleContainer h1 {
   color: #fff;

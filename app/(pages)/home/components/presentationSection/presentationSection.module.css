@@ -1,29 +1,42 @@
 .presentationSectionContainer .container {
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-.presentationSectionContainer .container h2 {
-  align-self: flex-start;
 }
 @media screen and (max-width : 768px) {
   .presentationSectionContainer .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
-.presentationSectionContainer .container div p {
+.presentationSectionContainer .container .left h2 {
+  align-self: flex-start;
+  font-size: 2rem;
+  font-family: Montserrat;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: none;
+}
+@media screen and (max-width : 768px) {
+  .presentationSectionContainer .container .left h2 {
+    display: block;
+  }
+}
+.presentationSectionContainer .container .left p {
   color: #fff;
   font-family: spaceMono;
   font-size: 0.9rem;
 }
-.presentationSectionContainer .container div .amirImgContainer {
+.presentationSectionContainer .container .right .amirImgContainer {
   width: 15rem;
   height: 15rem;
   border-radius: 50%;
   overflow: hidden;
+  margin-left: 3rem;
 }
-.presentationSectionContainer .container .left {
-  padding: 1rem;
+@media screen and (max-width : 768px) {
+  .presentationSectionContainer .container .right .amirImgContainer {
+    margin-bottom: 1rem;
+    margin-left: 0;
+  }
 }
 
 /*# sourceMappingURL=presentationSection.module.css.map */

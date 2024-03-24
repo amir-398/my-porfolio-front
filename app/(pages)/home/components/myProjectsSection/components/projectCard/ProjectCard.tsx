@@ -58,7 +58,9 @@ export default function ProjectCard(props: ProjectCardProps) {
       <div>
         <h4>{title}</h4>
         <p>{description}</p>
-        <Btn title="Voir le projet" onClick={() => console.log("")} />
+        <div className={style.btnContainer}>
+          <Btn title="Voir le projet" onClick={() => console.log("")} />
+        </div>
       </div>
       <div>
         <Image src={img} alt={title} width={500} height={500} />

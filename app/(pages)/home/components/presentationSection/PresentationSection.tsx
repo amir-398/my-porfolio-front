@@ -7,8 +7,8 @@ export default function PresentationSection() {
     <PageContainer>
       <div className={style.presentationSectionContainer}>
         <div className={style.container}>
-          <h2>Qui suis je ?</h2>
           <div className={style.left}>
+            <h2>Qui suis je ?</h2>
             <p>
               je me présente : un voyageur des mondes du code, actuellement en
               quête de maîtrise en tant que développeur web full-stack junior
