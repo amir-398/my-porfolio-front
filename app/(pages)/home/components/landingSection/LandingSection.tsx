@@ -23,8 +23,7 @@ export default function LandingSection() {
             Embarquez pour une odyssée numérique à travers les galaxies de ma
             créativité. <br />
             je vous invite à explorer les univers que j&apos;ai façonnés en tant
-            que développeur web, des mondes créés à partir de la pure
-            imagination et de la technologie avancée.
+            que développeur web.
           </h3>
           <div className={style.btnContainer}>
             <Btn

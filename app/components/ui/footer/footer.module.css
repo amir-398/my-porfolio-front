@@ -1,0 +1,53 @@
+.footer .footerContainer {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .footerContainer .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.footer .footerContainer .left h1 {
+  margin: 1rem 0;
+}
+.footer .footerContainer .left p {
+  font-size: 0.8rem;
+  text-align: center;
+}
+.footer .footerContainer .center {
+  width: 60%;
+  color: #fff;
+  text-align: center;
+}
+.footer .footerContainer .center h2 {
+  margin-bottom: 1rem;
+}
+.footer .footerContainer .center ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 0.5rem;
+}
+.footer .footerContainer .center ul li {
+  margin-right: 1rem;
+}
+.footer .footerContainer .right {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.footer .copyrightsContainer {
+  padding: 2rem 0;
+}
+.footer .copyrightsContainer p {
+  text-align: center;
+}
+
+/*# sourceMappingURL=footer.module.css.map */

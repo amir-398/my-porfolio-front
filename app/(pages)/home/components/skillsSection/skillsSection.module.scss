@@ -1,4 +1,6 @@
+@import "../../../../style_constants/MARGINS";
 .skillsSectionContainer {
+  margin: $marginVertical 0;
   .titleContainer {
     h3 {
       color: #ba68c8;

@@ -7,9 +7,20 @@
   display: flex;
   padding: 1rem;
 }
+@media screen and (max-width : 768px) {
+  .projectCardContainer {
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
+}
 .projectCardContainer div {
   width: 50%;
   display: flex;
+}
+@media screen and (max-width : 768px) {
+  .projectCardContainer div {
+    width: 100%;
+  }
 }
 .projectCardContainer div:nth-child(1) {
   flex-direction: column;

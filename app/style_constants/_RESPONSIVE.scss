@@ -1,0 +1,10 @@
+$xxs-screen: 375px;
+$xs-screen: 426px;
+$sm-screen: 768px;
+$md-screen: 1025px;
+$lg-screen: 1440px;
+$xxs-media: "screen and (max-width : #{$xxs-screen})";
+$xs-media: "screen and (max-width : #{$xs-screen})";
+$sm-media: "screen and (max-width : #{$sm-screen})";
+$md-media: "screen and (max-width : #{$md-screen})";
+$lg-media: "screen and (max-width : #{$lg-screen})";

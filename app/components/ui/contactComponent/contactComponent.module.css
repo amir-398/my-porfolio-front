@@ -88,4 +88,59 @@
   }
 }
 
+@media screen and (max-width : 1025px) {
+  .formContainer h2 {
+    font-size: 2rem;
+  }
+  .formContainer form .submitBtn {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width : 768px) {
+  .contactContainer {
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+  .overlay {
+    height: 100%;
+  }
+  .formContainer {
+    width: 100%;
+    margin-top: 2rem;
+    z-index: 1;
+  }
+  .formContainer h2 {
+    font-size: 1.5rem;
+  }
+  .astroContainer {
+    width: 100%;
+  }
+  .btn-3 {
+    font-size: 12px;
+  }
+  .planet3 {
+    top: 0;
+  }
+  .planet4 {
+    top: 5%;
+    left: 10%;
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  .planet2 {
+    width: 2rem;
+    height: 2rem;
+    bottom: 10%;
+    left: 2%;
+  }
+  .planet5,
+  .planet6,
+  .planet1 {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=contactComponent.module.css.map */

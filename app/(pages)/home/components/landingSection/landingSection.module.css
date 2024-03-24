@@ -1,6 +1,9 @@
 .earthImg {
   position: absolute;
   right: 0;
+  top: 0;
+  width: 15%;
+  height: 20%;
 }
 
 .landingSectionContainer {
@@ -12,7 +15,7 @@
   justify-content: center;
 }
 .landingSectionContainer h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: bold;
   background: -webkit-linear-gradient(45deg, #051937 0%, #004d7a 20%, #008793 60%, #00bf72 70%, #a8eb12 100%);
   background-clip: border-box;
@@ -23,7 +26,7 @@
   letter-spacing: 1.8px;
 }
 .landingSectionContainer h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: bold;
   color: #fff;
   text-align: center;
@@ -31,7 +34,7 @@
   letter-spacing: 3px;
 }
 .landingSectionContainer h3 {
-  font-size: 0.9rem;
+  font-size: clamp(0.4rem, 3vw, 0.9rem);
   font-weight: bold;
   color: #fff;
   text-align: center;
