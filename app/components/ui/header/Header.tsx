@@ -23,8 +23,12 @@ export default function Header() {
           </div>
           <div className={style.center}>
             <ul className={style.navList}>
-              <li>Accueil</li>
-              <li>À propos</li>
+              <li>
+                <Link href="#landing-section"> Accueil</Link>
+              </li>
+              <li>
+                <Link href="#presentation"> À propos</Link>
+              </li>
               <li>Mes projets</li>
               <li>Mes compétences</li>
               <li>Contact</li>

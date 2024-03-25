@@ -15,7 +15,9 @@ html {
   background: url("./assets/img/3.png");
   background-size: 124px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

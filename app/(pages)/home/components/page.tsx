@@ -18,24 +18,24 @@ export default function Home() {
   ];
   return (
     <div>
-      <section className="landing-section">
+      <section className="landing-section" id="landing-section">
         <LandingSection />
       </section>
       <section className="animated-title">
         <AnimatedTitle title={animatedTitles[0]} />
       </section>
-      <section className="presentation">
+      <section className="presentation" id="presentation">
         <PresentationSection />
       </section>
 
-      <section className="projects">
+      <section className="projects" id="projects">
         <MyProjectsSection />
       </section>
       <AnimatedTitle title={animatedTitles[1]} />
-      <section className="skills">
+      <section className="skills" id="skills">
         <SkillsSection />
       </section>
-      <section className="contact">
+      <section className="contact" id="contact">
         <ContactSection />
       </section>
     </div>
