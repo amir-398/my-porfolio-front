@@ -1,16 +1,21 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { slide as Menu } from "react-burger-menu";
-import { RxHamburgerMenu } from "react-icons/rx";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) document.body.style.overflow = " hidden hidden";
+    else document.body.style.overflow = "hidden auto";
+  }, [isMenuOpen]);
   return (
     <header className={style.header}>
+      <div className={style.bg}></div>
       <PageContainer>
         <div className={style.headerContainer}>
           <div className={style.logoContainer}>
@@ -51,9 +56,11 @@ export default function Header() {
             </label>
           </div>
           <div className={style.rightMobile}>
-            <RxHamburgerMenu
-              color="red"
-              size={30}
+            <input
+              type="checkbox"
+              role="button"
+              aria-label="Display the menu"
+              className={style.hamburgerMenuIcon}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
@@ -65,11 +72,7 @@ export default function Header() {
         width={"100%"}
         noOverlay
         disableOverlayClick
-        styles={{
-          bmBurgerButton: {
-            display: "none !important",
-          },
-        }}
+        customBurgerIcon={false}
       >
         <Link href={"/"}>Accueil</Link>
         <Link href={"/"}>À propos</Link>

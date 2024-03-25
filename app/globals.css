@@ -14,7 +14,6 @@ body,
 html {
   background: url("./assets/img/3.png");
   background-size: 124px;
-  overflow-x: hidden;
 }
 
 @layer utilities {
