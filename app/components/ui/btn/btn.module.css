@@ -15,5 +15,12 @@
   color: #fff;
   transform: translateY(-2px);
 }
+@media screen and (max-width : 768px) {
+  .btnContainer .btnUi {
+    width: 100%;
+    padding: 0 2rem;
+    font-size: 100%;
+  }
+}
 
 /*# sourceMappingURL=btn.module.css.map */

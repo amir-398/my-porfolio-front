@@ -5,8 +5,6 @@ export default function ContactSection() {
   return (
     <PageContainer>
       <div className={style.contactSectionContainer}>
-        <h3>Contact</h3>
-        <h2>Une question ? Un projet ?</h2>
         <ContactComponent />
       </div>
     </PageContainer>

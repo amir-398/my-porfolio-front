@@ -51,6 +51,17 @@
   top: 80%;
   animation: 10s infinite rocketAnim;
 }
+@media screen and (max-width : 426px) {
+  .landingSectionContainer .rocketImg {
+    width: 2rem;
+    top: 85%;
+  }
+}
+@media screen and (max-width : 375px) {
+  .landingSectionContainer .rocketImg {
+    display: none;
+  }
+}
 @keyframes rocketAnim {
   0% {
     transform: rotate(45deg) translateX(0);

@@ -1,4 +1,5 @@
 "use client";
+import { useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,11 +9,36 @@ import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const activeSection = useAppSelector(
+    (state) => state.activeSectionSlice.activeSection
+  );
 
+  const navItems = [
+    { id: 1, title: "Accueil", sectionId: "landing-section" },
+    { id: 2, title: "À propos", sectionId: "presentation" },
+    { id: 3, title: "Mes projets", sectionId: "projects" },
+    { id: 4, title: "Mes compétences", sectionId: "skills" },
+    { id: 5, title: "Contact", sectionId: "contact" },
+  ];
+
+  // if the menu is open, disable the scroll
   useEffect(() => {
     if (isMenuOpen) document.body.style.overflow = " hidden hidden";
     else document.body.style.overflow = "hidden auto";
   }, [isMenuOpen]);
+
+  // handle scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerHeight = document.querySelector("header")?.clientHeight;
+      window.scrollTo({
+        top: section.offsetTop - headerHeight!,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <header className={style.header}>
       <div className={style.bg}></div>
@@ -23,15 +49,17 @@ export default function Header() {
           </div>
           <div className={style.center}>
             <ul className={style.navList}>
-              <li>
-                <Link href="#landing-section"> Accueil</Link>
-              </li>
-              <li>
-                <Link href="#presentation"> À propos</Link>
-              </li>
-              <li>Mes projets</li>
-              <li>Mes compétences</li>
-              <li>Contact</li>
+              {navItems.map((item) => (
+                <li
+                  key={item.id}
+                  onClick={() => scrollToSection(item.sectionId)}
+                  className={
+                    activeSection === item.sectionId ? style.active : undefined
+                  }
+                >
+                  {item.title}
+                </li>
+              ))}
             </ul>
           </div>
 

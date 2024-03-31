@@ -1,11 +1,16 @@
+"use client";
+import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { useEffect, useRef } from "react";
 import AnimatedTitle from "./animatedTitle/AnimatedTitle";
 import ContactSection from "./contactSection/ContactSection";
 import LandingSection from "./landingSection/LandingSection";
 import MyProjectsSection from "./myProjectsSection/MyProjectsSection";
 import PresentationSection from "./presentationSection/PresentationSection";
 import SkillsSection from "./skillsSection/SkillsSection";
-
 export default function Home() {
+  const dispatch = useAppDispatch();
+
   const animatedTitles = [
     {
       id: 1,
@@ -16,15 +21,47 @@ export default function Home() {
       title: "Développeur web Junior créatif",
     },
   ];
+  const observer = useRef<any>(null);
+  const landingSectionRef = useRef<HTMLDivElement>(null);
+  const presentationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries.find(
+          (entry) => entry.isIntersecting
+        )?.target;
+        //Update state with the visible section ID
+        if (visibleSection) {
+          dispatch(setActiveSection(visibleSection.id));
+        }
+      },
+      {
+        threshold: 0.7,
+      }
+    );
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      observer.current.observe(section);
+    });
+    //Cleanup function to remove observer
+    return () => {
+      sections.forEach((section) => {
+        observer.current.unobserve(section);
+      });
+    };
+  }, []);
   return (
     <div>
-      <section className="landing-section" id="landing-section">
+      <section
+        className="landing-section"
+        id="landing-section"
+        ref={landingSectionRef}
+      >
         <LandingSection />
       </section>
-      <section className="animated-title">
+      <section className="presentation" id="presentation" ref={presentationRef}>
         <AnimatedTitle title={animatedTitles[0]} />
-      </section>
-      <section className="presentation" id="presentation">
         <PresentationSection />
       </section>
 

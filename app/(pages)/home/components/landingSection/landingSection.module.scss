@@ -1,3 +1,4 @@
+@import "../../../../style_constants/RESPONSIVE";
 .earthImg {
   position: absolute;
   right: 0;
@@ -54,8 +55,14 @@
     position: absolute;
     right: 10%;
     top: 80%;
-
     animation: 10s infinite rocketAnim;
+    @media #{$xs-media} {
+      width: 2rem;
+      top: 85%;
+    }
+    @media #{$xxs-media} {
+      display: none;
+    }
   }
   @keyframes rocketAnim {
     0% {

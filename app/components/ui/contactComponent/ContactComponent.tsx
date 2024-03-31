@@ -1,5 +1,6 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import Image from "next/image";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -15,13 +16,13 @@ import Btn from "../btn/Btn";
 import InputComponent from "../inputComponent/InputComponent";
 import style from "./contactComponent.module.css";
 const schema = yup.object({
-  firstname: yup.string().required("Champ obligatoire !"),
+  name: yup.string().required("Champ obligatoire !"),
   email: yup.string().email().required("Champ obligatoire !"),
   message: yup.string().required("Champ obligatoire !"),
 });
 
 interface ContactFormFields {
-  firstname: string;
+  name: string;
   email: string;
   message: string;
 }
@@ -36,7 +37,33 @@ export default function ContactComponent() {
   const componentRef = useRef(null);
 
   const onSubmit = (values: ContactFormFields) => {
-    console.log(values);
+    // const { name, email, message } = values;
+    const { name, email, message } = values;
+
+    axios
+      .post("https://sendemail-zycn5dhvma-uc.a.run.app", {
+        name: name,
+        email: email,
+        message: message,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // La requête a été faite et le serveur a répondu avec un statut hors de la plage 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // La requête a été faite mais aucune réponse n'a été reçue
+          console.log(error.request);
+        } else {
+          // Quelque chose s'est mal passé lors de la création de la requête
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      });
   };
 
   return (
@@ -51,11 +78,16 @@ export default function ContactComponent() {
         <Image className={style.astroImg} src={astroContact} alt="astronaute" />
       </div>
       <div className={style.formContainer}>
+        <div>
+          <h3>Contact</h3>
+          <h2>Une question ? Un projet ?</h2>
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputComponent
             placeholderText="Nom"
             register={register}
-            registerText="firstname"
+            registerText="name"
             type="text"
             errors={errors}
           />
@@ -73,8 +105,9 @@ export default function ContactComponent() {
             type="textarea"
             errors={errors}
           />
-
-          <Btn title="Contact" onClick={() => console.log("")} />
+          <div className={style.btnContainer}>
+            <Btn title="Terminer la mission" />
+          </div>
         </form>
       </div>
     </div>

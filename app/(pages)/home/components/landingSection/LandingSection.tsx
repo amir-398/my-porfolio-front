@@ -26,10 +26,7 @@ export default function LandingSection() {
             que développeur web.
           </h3>
           <div className={style.btnContainer}>
-            <Btn
-              title="Commencer la mission"
-              onClick={() => console.log("Commencer la mission")}
-            />
+            <Btn title="Commencer la mission" href="#presentation" />
           </div>
           <Image
             className={style.rocketImg}

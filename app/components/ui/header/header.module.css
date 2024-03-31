@@ -36,6 +36,10 @@
   list-style-type: none;
   cursor: pointer;
 }
+.header .headerContainer .center .navList li.active {
+  color: #008793;
+  font-weight: bold;
+}
 .header .headerContainer .center .navList li::after {
   content: "";
   width: 0%;

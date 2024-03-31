@@ -9,6 +9,10 @@
       position: relative;
       list-style-type: none;
       cursor: pointer;
+      &.active {
+        color: $primaryColor;
+        font-weight: bold;
+      }
       &::after {
         content: "";
         width: 0%;

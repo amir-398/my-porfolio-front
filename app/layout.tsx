@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import QueryProvider from "./QueryProvider";
+import ReduxStoreProvider from "./ReduxStoreProvider";
 import Footer from "./components/ui/footer/Footer";
 import Header from "./components/ui/header/Header";
 import "./globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={inter.className}>
-        <QueryProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </QueryProvider>
+        <ReduxStoreProvider>
+          <QueryProvider>
+            <Header />
+            {children}
+            <Footer />
+          </QueryProvider>
+        </ReduxStoreProvider>
       </body>
     </html>
   );
