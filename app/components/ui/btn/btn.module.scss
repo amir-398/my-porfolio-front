@@ -12,10 +12,19 @@
     border: $primaryColor 2px solid;
     transition: all 0.3s ease 0s;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       background-color: $primaryColor;
       color: #fff;
       transform: translateY(-2px);
+    }
+    &:disabled {
+      transform: translateY(0);
+      &:hover {
+        background-color: transparent;
+      }
     }
     @media #{$sm-media} {
       width: 100%;

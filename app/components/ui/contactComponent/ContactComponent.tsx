@@ -1,8 +1,10 @@
 "use client";
+import { setIsModalVisible } from "@/app/redux/Slices/modalIsVisibleSlice";
+import { useAppDispatch } from "@/app/redux/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import astroContact from "../../../assets/img/astroContact.png";
@@ -27,6 +29,7 @@ interface ContactFormFields {
   message: string;
 }
 export default function ContactComponent() {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -35,11 +38,10 @@ export default function ContactComponent() {
     resolver: yupResolver(schema),
   });
   const componentRef = useRef(null);
-
+  const [loading, setLoading] = useState(false);
   const onSubmit = (values: ContactFormFields) => {
-    // const { name, email, message } = values;
+    setLoading(true);
     const { name, email, message } = values;
-
     axios
       .post("https://sendemail-zycn5dhvma-uc.a.run.app", {
         name: name,
@@ -47,22 +49,16 @@ export default function ContactComponent() {
         message: message,
       })
       .then((response) => {
-        console.log(response);
+        setLoading(false);
+        if (response.data == "Email sent successfully") {
+          dispatch(setIsModalVisible(true));
+        }
       })
       .catch((error) => {
-        if (error.response) {
-          // La requête a été faite et le serveur a répondu avec un statut hors de la plage 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // La requête a été faite mais aucune réponse n'a été reçue
-          console.log(error.request);
-        } else {
-          // Quelque chose s'est mal passé lors de la création de la requête
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
+        setLoading(false);
+        alert(
+          "oops, une erreur s'est porduite lors de l'envoie du fomulaire. Veuillez réessayer !"
+        );
       });
   };
 
@@ -82,7 +78,6 @@ export default function ContactComponent() {
           <h3>Contact</h3>
           <h2>Une question ? Un projet ?</h2>
         </div>
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputComponent
             placeholderText="Nom"
@@ -106,7 +101,7 @@ export default function ContactComponent() {
             errors={errors}
           />
           <div className={style.btnContainer}>
-            <Btn title="Terminer la mission" />
+            <Btn title="Terminer la mission" loading={loading} />
           </div>
         </form>
       </div>

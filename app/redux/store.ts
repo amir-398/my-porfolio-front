@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import activeSectionSlice from "./Slices/activeSectionSlice";
+import modalIsVisibleSlice from "./Slices/modalIsVisibleSlice";
 
 const store = configureStore({
   reducer: {
     activeSectionSlice: activeSectionSlice,
+    modalIsVisibleSlice: modalIsVisibleSlice,
   },
 });
 

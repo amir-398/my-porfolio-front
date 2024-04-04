@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "watch:scss": "npm-run-all --parallel login inputComponent btn landingSection header pageContainer presentationSection animatedTitle myProjectsSection projectCard skillsSection skillCard contactSection contactComponent footer",
+    "watch:scss": "npm-run-all --parallel login inputComponent btn landingSection header pageContainer presentationSection animatedTitle myProjectsSection projectCard skillsSection skillCard contactSection contactComponent footer modalComponent projectPage",
+    "projectPage": "sass --watch ./app/(pages)/mes-projets/[projectId]/page.module.scss ./app/(pages)/mes-projets/[projectId]/page.module.css",
     "login": "sass --watch ./app/(pages)/login/page.module.scss ./app/(pages)/login/page.module.css",
     "landingSection": "sass --watch ./app/(pages)/home/components/landingSection/landingSection.module.scss ./app/(pages)/home/components/landingSection/landingSection.module.css",
     "presentationSection": "sass --watch ./app/(pages)/home/components/presentationSection/presentationSection.module.scss ./app/(pages)/home/components/presentationSection/presentationSection.module.css",
@@ -18,6 +19,7 @@
     "projectCard": "sass --watch ./app/(pages)/home/components/myProjectsSection/components/projectCard/projectCard.module.scss ./app/(pages)/home/components/myProjectsSection/components/projectCard/projectCard.module.css",
     "animatedTitle": "sass --watch ./app/(pages)/home/components/animatedTitle/animatedTitle.module.scss ./app/(pages)/home/components/animatedTitle/animatedTitle.module.css",
     "btn": "sass --watch ./app/components/ui/btn/btn.module.scss ./app/components/ui/btn/btn.module.css",
+    "modalComponent": "sass --watch ./app/components/ui/modalComponent/modal.module.scss ./app/components/ui/modalComponent/modal.module.css",
     "footer": "sass --watch ./app/components/ui/footer/footer.module.scss ./app/components/ui/footer/footer.module.css",
     "inputComponent": "sass --watch ./app/components/ui/inputComponent/inputComponent.module.scss ./app/components/ui/inputComponent/inputComponent.module.css",
     "contactComponent": "sass --watch ./app/components/ui/contactComponent/contactComponent.module.scss ./app/components/ui/contactComponent/contactComponent.module.css",
@@ -25,7 +27,10 @@
     "pageContainer": "sass --watch ./app/components/ui/pageContainer/pageContainer.module.scss ./app/components/ui/pageContainer/pageContainer.module.css"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.3.4",
+    "@mui/material": "^5.15.14",
     "@reduxjs/toolkit": "^2.2.2",
     "@tanstack/react-query": "^5.28.4",
     "@tanstack/react-query-devtools": "^5.28.4",
