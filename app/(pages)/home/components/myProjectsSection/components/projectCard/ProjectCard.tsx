@@ -1,5 +1,4 @@
 "use client";
-import img from "@/app/assets/img/project.webp";
 import Btn from "@/app/components/ui/btn/Btn";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -57,12 +56,12 @@ export default function ProjectCard(props: ProjectCardProps) {
         <div className={style.btnContainer}>
           <Btn
             title="Voir le projet"
-            href={`/mes-projets/${title.replace(/\s+/g, "-")}`}
+            href={`/mes-projets/${title.replace(/\s+/g, "_")}`}
           />
         </div>
       </div>
       <div>
-        <Image src={img} alt={title} width={500} height={500} />
+        <Image src={image} alt={title} width={300} height={300} />
       </div>
     </div>
   );

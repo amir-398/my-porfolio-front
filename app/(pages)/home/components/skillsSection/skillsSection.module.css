@@ -24,5 +24,15 @@
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 2rem;
 }
+@media screen and (max-width : 426px) {
+  .skillsSectionContainer .skillsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  }
+}
+@media screen and (max-width : 375px) {
+  .skillsSectionContainer .skillsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+  }
+}
 
 /*# sourceMappingURL=skillsSection.module.css.map */

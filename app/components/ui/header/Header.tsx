@@ -1,25 +1,26 @@
 "use client";
+import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { slide as Menu } from "react-burger-menu";
-
-import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { slide as Menu } from "react-burger-menu";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
 export default function Header({ pageUrl }: { pageUrl: string }) {
   // use pathname
   const dispatch = useAppDispatch();
+  const checkboxRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const currentUrl = pathname.split("/")[1];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const currentHash = window.location.hash;
+  const currentHash = window && window?.location.hash;
   const activeSection = useAppSelector(
     (state) => state.activeSectionSlice.activeSection
   );
+
   useEffect(() => {
     if (currentUrl == "mes-projets") {
       dispatch(setActiveSection("projects"));
@@ -58,6 +59,27 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
       scrollToSection(sectionId);
     }
   }, [currentHash]);
+  const getInitialCheckboxState = () => {
+    const langageStorage = localStorage.getItem("langage");
+    return langageStorage === "en"; // Returns true if "en", false otherwise
+  };
+  // langage checkbox
+  const [ischeckBoxChecked, setIscheckBoxChecked] = useState<boolean>(
+    getInitialCheckboxState()
+  );
+  console.log(ischeckBoxChecked);
+
+  const handleLangageChange = () => {
+    const newCheckedState = !ischeckBoxChecked;
+    setIscheckBoxChecked(newCheckedState);
+    localStorage.setItem("langage", newCheckedState ? "en" : "fr"); // Immediately update local storage
+  };
+
+  useEffect(() => {
+    const langageStorage = localStorage.getItem("langage");
+    setIscheckBoxChecked(langageStorage === "en");
+  }, []);
+
   return (
     <header className={style.header}>
       <div className={style.bg}></div>
@@ -84,10 +106,12 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
           <div className={style.right}>
             <label className="relative inline-flex items-center justify-center cursor-pointer">
               <input
+                ref={checkboxRef}
                 type="checkbox"
                 value=""
                 className="sr-only peer"
-                onClick={() => console.log("lol")}
+                onClick={handleLangageChange}
+                checked={ischeckBoxChecked}
               />
               <p
                 style={{

@@ -3,9 +3,6 @@ import AnimatedTitle from "@/app/components/ui/animatedTitle/AnimatedTitle";
 import Btn from "@/app/components/ui/btn/Btn";
 import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
 import Image from "next/image";
-import img from "../../../assets/img/Bahy_img_33.png";
-import img_2 from "../../../assets/img/realisation.jpg";
-import projectContent from "../../../content/projectCardsContent.json";
 import style from "./page.module.css";
 export default function ProjectPage({
   params,
@@ -15,49 +12,78 @@ export default function ProjectPage({
   //get id from url
   const { projectId } = params;
 
+  //get language from local storage
+  const lng = localStorage.getItem("langage");
+  console.log(lng);
+  const projectContent = require(`@/app/content/${lng}/projects/content.json`);
   const projetContent = projectContent.find(
-    (project) => project.title == projectId.replace(/-/g, " ")
+    (project: any) => project.title == projectId.replace(/_/g, " ")
   );
+
+  const title = projetContent?.title;
   const introduction = projetContent?.introduction;
+  const client = projetContent?.client;
+  const projectUrl = projetContent?.projectUrl;
+  const date = projetContent?.date;
+  const technologies = projetContent?.technologies.join(", ");
   const needs = projetContent?.needs;
   const solutions = projetContent?.solutions;
   const challenges = projetContent?.challenges;
-
+  const image = projetContent?.image;
   return (
     <main>
       <PageContainer>
         <div className={style.projectPageContainer}>
           <div className={style.header}>
-            <h1>Site web Bahy</h1>
+            <h1>{title} </h1>
             <h2>- WEB DESIGN &amp; DÉVELOPPEMENT WEB -</h2>
-            <Image src={img} alt="project" width={600} />
+
+            <Image src={image ?? ""} width={600} height={600} alt="lol" />
             <div className={style.projetInfoContainer}>
               <div>
                 <div className={style.separator}></div>
                 <h3>Client</h3>
-                <p>Bahy</p>
+                <p>{client}</p>
               </div>
               <div>
                 <div className={style.separator}></div>
                 <h3>Date</h3>
-                <p>2022</p>
+                <p>{date} </p>
               </div>
               <div>
                 <div className={style.separator}></div>
                 <h3>Technologies</h3>
-                <p>React, Next.js, TailwindCSS</p>
+                <p>{technologies}</p>
               </div>
             </div>
           </div>
           <div className={style.contentContainer}>
             <p>{introduction}</p>
             <div className={style.btnContainer}>
-              <Btn title="Voir le projet" href="https://bahy.fr/" target />
+              {projectUrl && (
+                <Btn title="Voir le projet" href={projectUrl} target />
+              )}
             </div>
             <div className={style.content}>
               <div className={style.leftContent}>
-                <Image src={img_2} alt="image" />
-                <Image src={img_2} alt="image" />
+                <Image
+                  src={projetContent?.img_1 ?? ""}
+                  width={600}
+                  height={600}
+                  alt="image"
+                />
+                <Image
+                  src={projetContent?.img_2 ?? ""}
+                  width={600}
+                  height={600}
+                  alt="image"
+                />
+                <Image
+                  src={projetContent?.img_3 ?? ""}
+                  width={600}
+                  height={600}
+                  alt="image"
+                />
               </div>
               <div className={style.rightContent}>
                 <div className={style.animatedTitleContainer}>

@@ -1,4 +1,5 @@
 @import "../../../../style_constants/MARGINS";
+@import "../../../../style_constants/RESPONSIVE";
 .skillsSectionContainer {
   margin: $marginVertical 0;
   .titleContainer {
@@ -26,5 +27,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 2rem;
+    @media #{$xs-media} {
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
+    @media #{$xxs-media} {
+      grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+    }
   }
 }
