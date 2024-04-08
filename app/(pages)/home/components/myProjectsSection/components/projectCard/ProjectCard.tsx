@@ -21,14 +21,10 @@ export default function ProjectCard(props: ProjectCardProps) {
     const animatedContainerRefCurrent = animatedContainerRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // L'élément devient visible
-
         setIsCardVisible(entry.isIntersecting);
-        // Optionnel : vous pouvez arrêter d'observer après la première animation
-        // observer.unobserve(animatedContainerRefCurrent as Element);
       },
       {
-        threshold: 0.3, // 30% de l'élément est visible
+        threshold: 0.3,
       }
     );
 
@@ -59,7 +55,10 @@ export default function ProjectCard(props: ProjectCardProps) {
         <h4>{title}</h4>
         <p>{description}</p>
         <div className={style.btnContainer}>
-          <Btn title="Voir le projet" onClick={() => console.log("")} />
+          <Btn
+            title="Voir le projet"
+            href={`/mes-projets/${title.replace(/\s+/g, "-")}`}
+          />
         </div>
       </div>
       <div>
@@ -68,34 +67,3 @@ export default function ProjectCard(props: ProjectCardProps) {
     </div>
   );
 }
-
-// const handleScrollAnimationCard = () => {
-//   const animatedContainerRefCurrent = animatedContainerRef.current;
-//   const observer = new IntersectionObserver(
-//     ([entry]) => {
-//       // L'élément devient visible
-
-//       if (entry.isIntersecting) {
-//         console.log(entry.isVisible);
-//         setIsCardVisible(true);
-//         // Optionnel : vous pouvez arrêter d'observer après la première animation
-//         observer.unobserve(animatedContainerRefCurrent as Element);
-//       }
-//     },
-//     {
-//       threshold: 0.3, // 30% de l'élément est visible
-//     }
-//   );
-
-//   if (animatedContainerRef.current) {
-//     observer.observe(animatedContainerRefCurrent as Element);
-//   }
-
-//   return () => {
-//     if (animatedContainerRefCurrent) {
-//       observer.unobserve(animatedContainerRefCurrent as Element);
-//     }
-//   };
-// };
-
-// window.addEventListener("scroll", handleScrollAnimationCard);

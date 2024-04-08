@@ -1,8 +1,9 @@
 "use client";
+import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
 import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
 import { useAppDispatch } from "@/app/redux/hooks";
 import { useEffect, useRef } from "react";
-import AnimatedTitle from "./animatedTitle/AnimatedTitle";
+import AnimatedTitle from "../../../components/ui/animatedTitle/AnimatedTitle";
 import ContactSection from "./contactSection/ContactSection";
 import LandingSection from "./landingSection/LandingSection";
 import MyProjectsSection from "./myProjectsSection/MyProjectsSection";
@@ -61,14 +62,18 @@ export default function Home() {
         <LandingSection />
       </section>
       <section className="presentation" id="presentation" ref={presentationRef}>
-        <AnimatedTitle title={animatedTitles[0]} />
+        <PageContainer>
+          <AnimatedTitle title={animatedTitles[0]} />
+        </PageContainer>
         <PresentationSection />
       </section>
 
       <section className="projects" id="projects">
         <MyProjectsSection />
       </section>
-      <AnimatedTitle title={animatedTitles[1]} />
+      <PageContainer>
+        <AnimatedTitle title={animatedTitles[1]} />
+      </PageContainer>
       <section className="skills" id="skills">
         <SkillsSection />
       </section>

@@ -6,17 +6,18 @@ interface BtnProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   href?: string;
   loading?: boolean;
+  target?: boolean;
 }
 
-const Btn: React.FC<BtnProps> = ({ title, onClick, href, loading }) => {
+const Btn: React.FC<BtnProps> = ({ title, onClick, href, loading, target }) => {
   return (
     <div className={style.btnContainer}>
       {href ? (
-        <button onClick={onClick} className={style.btnUi} disabled={loading}>
-          <Link href={href}>
+        <Link href={href} target={target ? "_blank" : undefined}>
+          <button onClick={onClick} className={style.btnUi} disabled={loading}>
             {loading ? <CircularProgress size={30} color="inherit" /> : title}
-          </Link>
-        </button>
+          </button>
+        </Link>
       ) : (
         <button onClick={onClick} className={style.btnUi} disabled={loading}>
           {loading ? <CircularProgress size={30} color="inherit" /> : title}

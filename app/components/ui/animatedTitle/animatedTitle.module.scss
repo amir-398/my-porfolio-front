@@ -1,7 +1,7 @@
-@import "../../../../style_constants/RESPONSIVE";
+@import "../../../style_constants/RESPONSIVE";
 @font-face {
   font-family: "Montserrat";
-  src: url("../../../../assets/fonts/Montserrat-Bold.ttf");
+  src: url("../../../assets/fonts/Montserrat-Bold.ttf");
 }
 .animatedTitleContainer {
   @media #{$md-media} {

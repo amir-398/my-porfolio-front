@@ -1,17 +1,30 @@
 "use client";
-import { useAppSelector } from "@/app/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { slide as Menu } from "react-burger-menu";
+
+import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
+import { usePathname } from "next/navigation";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
-export default function Header() {
+export default function Header({ pageUrl }: { pageUrl: string }) {
+  // use pathname
+  const dispatch = useAppDispatch();
+  const pathname = usePathname();
+  const currentUrl = pathname.split("/")[1];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const currentHash = window.location.hash;
   const activeSection = useAppSelector(
     (state) => state.activeSectionSlice.activeSection
   );
+  useEffect(() => {
+    if (currentUrl == "mes-projets") {
+      dispatch(setActiveSection("projects"));
+    }
+  }, [currentUrl]);
 
   const navItems = [
     { id: 1, title: "Accueil", sectionId: "landing-section" },
@@ -39,6 +52,12 @@ export default function Header() {
     }
   };
 
+  useEffect(() => {
+    if (currentHash) {
+      const sectionId = currentHash.replace("#", "");
+      scrollToSection(sectionId);
+    }
+  }, [currentHash]);
   return (
     <header className={style.header}>
       <div className={style.bg}></div>
@@ -52,12 +71,11 @@ export default function Header() {
               {navItems.map((item) => (
                 <li
                   key={item.id}
-                  onClick={() => scrollToSection(item.sectionId)}
                   className={
                     activeSection === item.sectionId ? style.active : undefined
                   }
                 >
-                  {item.title}
+                  <Link href={`/#${item.sectionId}`}>{item.title}</Link>
                 </li>
               ))}
             </ul>

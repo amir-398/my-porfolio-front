@@ -1,13 +1,14 @@
 "use client";
 
-import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
 import { useCallback, useEffect, useRef, useState } from "react";
 import style from "./animatedTitle.module.css";
 
 export default function AnimatedTitle({
   title,
+  size,
 }: {
   title: Record<string, string | number>;
+  size?: number;
 }) {
   const animatedContainerRef = useRef<HTMLDivElement>(null);
   const [animatedTitleStyle, setAnimatedTitleStyle] = useState({
@@ -44,10 +45,10 @@ export default function AnimatedTitle({
   }, [handleObserver]);
 
   return (
-    <PageContainer>
-      <div ref={animatedContainerRef} className={style.animatedTitleContainer}>
-        <h1 style={animatedTitleStyle}>{title.title}</h1>
-      </div>
-    </PageContainer>
+    <div ref={animatedContainerRef} className={style.animatedTitleContainer}>
+      <h1 style={{ ...animatedTitleStyle, fontSize: `${size}rem` }}>
+        {title.title}
+      </h1>
+    </div>
   );
 }

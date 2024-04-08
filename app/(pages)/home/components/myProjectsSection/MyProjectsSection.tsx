@@ -3,8 +3,6 @@ import projectCardsContent from "@/app/content/projectCardsContent.json";
 import ProjectCard from "./components/projectCard/ProjectCard";
 import style from "./myProjectsSection.module.css";
 export default function MyProjectsSection() {
-  console.log(projectCardsContent);
-
   return (
     <PageContainer>
       <div className={style.myProjectContainer}>
