@@ -5,10 +5,10 @@ import earth_img from "../../../../assets/img/earth.png";
 import rocket_img from "../../../../assets/img/rocket.png";
 import Btn from "../../../../components/ui/btn/Btn";
 import style from "./landingSection.module.css";
+import { useAppSelector } from "@/app/redux/hooks";
 export default function LandingSection() {
-  const content = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/home/landingSection/content.json`);
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/landingSection/content.json`);
   return (
     <>
       <Image

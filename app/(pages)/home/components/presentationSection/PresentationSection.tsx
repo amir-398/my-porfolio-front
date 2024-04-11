@@ -1,11 +1,11 @@
 import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
+import { useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import amir_img from "../../../../assets/img/amir.jpg";
 import style from "./presentationSection.module.css";
 export default function PresentationSection() {
-  const content = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/home/presentationSection/content.json`);
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/presentationSection/content.json`);
   return (
     <PageContainer>
       <div className={style.presentationSectionContainer}>
@@ -15,13 +15,12 @@ export default function PresentationSection() {
 
             <p>{content.description[0]}</p>
             <br />
-            <p>
-              <p>{content.description[1]}</p>
-            </p>
+
+            <p>{content.description[1]}</p>
+
             <br />
-            <p>
-              <p>{content.description[2]}</p>
-            </p>
+
+            <p>{content.description[2]}</p>
           </div>
           <div className={style.right}>
             <div className={style.amirImgContainer}>

@@ -134,10 +134,38 @@
 }
 .header .hamburgerMenu {
   backdrop-filter: blur(10px);
-  width: 100vh;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
   margin-top: -6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-100%);
 }
-.header .hamburgerMenu > div > nav {
+.header .hamburgerMenu.visible {
+  animation: 1s ease-in-out forwards slideIn;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.header .hamburgerMenu.hidden {
+  animation: 1s ease-in-out forwards slideOut;
+}
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.header .hamburgerMenu > ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -145,6 +173,7 @@
   color: #fff;
   font-size: 1.2rem;
   gap: 2rem;
+  margin-bottom: 6rem;
 }
 
 /*# sourceMappingURL=header.module.css.map */
