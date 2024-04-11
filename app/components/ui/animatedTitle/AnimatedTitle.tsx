@@ -21,7 +21,7 @@ export default function AnimatedTitle({
     if (animatedContainerRef.current) {
       const { top } = animatedContainerRef.current.getBoundingClientRect();
 
-      let titlePosition = title.id == 1 ? top / 10 - 20 : top / 10 - 120;
+      let titlePosition = title.id == 1 ? top / 10 - 20 : top / 10 - 60;
       if (title.id == 1 && titlePosition <= 0) titlePosition = 0;
 
       setAnimatedTitleStyle({

@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
-  width: 110%;
+
   transform: translateX(-4rem);
   height: 100vh;
 
@@ -17,6 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     > div {
       width: 80%;
       margin-bottom: 2rem;
@@ -59,16 +60,14 @@
 
   .astroContainer {
     display: flex;
+    align-items: flex-end;
     position: relative;
     width: 50%;
     height: 100%;
     .astroImg {
-      position: absolute;
       width: 100%;
-      bottom: 0;
-      left: 0;
-      object-fit: cover;
-      z-index: 0;
+      object-fit: contain;
+      transform: translateX(-2rem);
     }
     img:not(:last-child) {
       position: absolute;
