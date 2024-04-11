@@ -1,11 +1,9 @@
-[
-  {
-    "label": "presentation",
-    "title_1": "QUI SUIS JE ?",
-    "description": [
-      "je me présente : un voyageur des mondes du code, actuellement en quête de maîtrise en tant que développeur web full-stack junior",
-      "Avec un arsenal de compétences en constante expansion, j'ai plongé profondément dans l'univers du développement web, armé d'une connaissance avancée dans une multitude de langages de programmation. Mon parcours est pavé de curiosité insatiable et d'une soif d'apprendre, me poussant toujours à explorer les confins des nouvelles technologies.",
-      "Je me distingue par ma capacité à déchiffrer les énigmes les plus complexes, cherchant toujours à conjuguer efficacité et élégance dans chaque solution apportée. Mais au-delà du code, je suis un fervent croyant dans le pouvoir de la communication et de l'esprit d'équipe. La collaboration est à mes yeux l'étoile polaire, guidant vers la matérialisation d'idées innovantes et la réalisation de projets ambitieux."
-    ]
-  }
-]
+{
+  "label": "presentation",
+  "title_1": "WHO AM I?",
+  "description": [
+    "Allow me to introduce myself: a traveler of the code worlds, currently on a quest for mastery as a junior full-stack web developer",
+    "With an ever-expanding arsenal of skills, I have delved deep into the universe of web development, armed with advanced knowledge in a multitude of programming languages. My journey is paved with insatiable curiosity and a thirst for learning, always pushing me to explore the frontiers of new technologies.",
+    "I stand out for my ability to decipher the most complex puzzles, always seeking to combine efficiency and elegance in every solution provided. But beyond code, I am a fervent believer in the power of communication and teamwork. Collaboration is, in my eyes, the guiding star, leading towards the materialization of innovative ideas and the accomplishment of ambitious projects."
+  ]
+}

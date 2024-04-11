@@ -9,7 +9,11 @@ import { slide as Menu } from "react-burger-menu";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
-export default function Header({ pageUrl }: { pageUrl: string }) {
+
+export default function Header() {
+  const headerContent = require(`@/app/content/${localStorage.getItem(
+    "langage"
+  )}/header/content.json`);
   // use pathname
   const dispatch = useAppDispatch();
   const checkboxRef = useRef<HTMLInputElement>(null);
@@ -26,14 +30,6 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
       dispatch(setActiveSection("projects"));
     }
   }, [currentUrl]);
-
-  const navItems = [
-    { id: 1, title: "Accueil", sectionId: "landing-section" },
-    { id: 2, title: "À propos", sectionId: "presentation" },
-    { id: 3, title: "Mes projets", sectionId: "projects" },
-    { id: 4, title: "Mes compétences", sectionId: "skills" },
-    { id: 5, title: "Contact", sectionId: "contact" },
-  ];
 
   // if the menu is open, disable the scroll
   useEffect(() => {
@@ -67,7 +63,6 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
   const [ischeckBoxChecked, setIscheckBoxChecked] = useState<boolean>(
     getInitialCheckboxState()
   );
-  console.log(ischeckBoxChecked);
 
   const handleLangageChange = () => {
     const newCheckedState = !ischeckBoxChecked;
@@ -90,7 +85,7 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
           </div>
           <div className={style.center}>
             <ul className={style.navList}>
-              {navItems.map((item) => (
+              {headerContent.map((item: Record<string, string | number>) => (
                 <li
                   key={item.id}
                   className={

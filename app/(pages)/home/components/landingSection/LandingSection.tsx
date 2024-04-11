@@ -6,6 +6,9 @@ import rocket_img from "../../../../assets/img/rocket.png";
 import Btn from "../../../../components/ui/btn/Btn";
 import style from "./landingSection.module.css";
 export default function LandingSection() {
+  const content = require(`@/app/content/${localStorage.getItem(
+    "langage"
+  )}/home/landingSection/content.json`);
   return (
     <>
       <Image
@@ -17,16 +20,11 @@ export default function LandingSection() {
       />
       <PageContainer>
         <div className={style.landingSectionContainer}>
-          <h2>AMIR MEBERBECHE</h2>
-          <h1>Développeur web junior</h1>
-          <h3>
-            Embarquez pour une odyssée numérique à travers les galaxies de ma
-            créativité. <br />
-            je vous invite à explorer les univers que j&apos;ai façonnés en tant
-            que développeur web.
-          </h3>
+          <h2> {content.title_1} </h2>
+          <h1>{content.title_2}.</h1>
+          <h3>{content.description}</h3>
           <div className={style.btnContainer}>
-            <Btn title="Commencer la mission" href="#presentation" />
+            <Btn title={content.btnText} href="#presentation" />
           </div>
           <Image
             className={style.rocketImg}

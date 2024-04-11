@@ -30,6 +30,9 @@ interface ContactFormFields {
 }
 export default function ContactComponent() {
   const dispatch = useAppDispatch();
+  const content = require(`@/app/content/${localStorage.getItem(
+    "langage"
+  )}/home/contactSection/content.json`);
   const {
     register,
     handleSubmit,
@@ -75,33 +78,33 @@ export default function ContactComponent() {
       </div>
       <div className={style.formContainer}>
         <div>
-          <h3>Contact</h3>
-          <h2>Une question ? Un projet ?</h2>
+          <h3>{content.label} </h3>
+          <h2>{content.title}</h2>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputComponent
-            placeholderText="Nom"
+            placeholderText={content.formLabel_1}
             register={register}
             registerText="name"
             type="text"
             errors={errors}
           />
           <InputComponent
-            placeholderText="Email"
+            placeholderText={content.formLabel_2}
             register={register}
             registerText="email"
             type="text"
             errors={errors}
           />
           <InputComponent
-            placeholderText="Message"
+            placeholderText={content.formLabel_3}
             register={register}
             registerText="message"
             type="textarea"
             errors={errors}
           />
           <div className={style.btnContainer}>
-            <Btn title="Terminer la mission" loading={loading} />
+            <Btn title={content.btnText} loading={loading} />
           </div>
         </form>
       </div>

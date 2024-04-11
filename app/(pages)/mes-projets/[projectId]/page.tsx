@@ -14,7 +14,6 @@ export default function ProjectPage({
 
   //get language from local storage
   const lng = localStorage.getItem("langage");
-  console.log(lng);
   const projectContent = require(`@/app/content/${lng}/projects/content.json`);
   const projetContent = projectContent.find(
     (project: any) => project.title == projectId.replace(/_/g, " ")

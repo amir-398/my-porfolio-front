@@ -11,17 +11,10 @@ import PresentationSection from "./presentationSection/PresentationSection";
 import SkillsSection from "./skillsSection/SkillsSection";
 export default function Home() {
   const dispatch = useAppDispatch();
+  const animatedContentTitle = require(`@/app/content/${localStorage.getItem(
+    "langage"
+  )}/animatedTitles/content.json`);
 
-  const animatedTitles = [
-    {
-      id: 1,
-      title: "Qui suis je ?",
-    },
-    {
-      id: 2,
-      title: "Développeur web Junior créatif",
-    },
-  ];
   const observer = useRef<any>(null);
   const landingSectionRef = useRef<HTMLDivElement>(null);
   const presentationRef = useRef<HTMLDivElement>(null);
@@ -63,7 +56,7 @@ export default function Home() {
       </section>
       <section className="presentation" id="presentation" ref={presentationRef}>
         <PageContainer>
-          <AnimatedTitle title={animatedTitles[0]} />
+          <AnimatedTitle title={animatedContentTitle[0]} />
         </PageContainer>
         <PresentationSection />
       </section>
@@ -72,7 +65,7 @@ export default function Home() {
         <MyProjectsSection />
       </section>
       <PageContainer>
-        <AnimatedTitle title={animatedTitles[1]} />
+        <AnimatedTitle title={animatedContentTitle[1]} />
       </PageContainer>
       <section className="skills" id="skills">
         <SkillsSection />

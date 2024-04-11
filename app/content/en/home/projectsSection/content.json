@@ -1,6 +1,4 @@
-[
-  {
-    "label": "MON PORTFOLIO",
-    "Title": "Mes projets réalisés"
-  }
-]
+{
+  "label": "MY PORTFOLIO",
+  "title": "My Projects"
+}
