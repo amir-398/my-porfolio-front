@@ -13,8 +13,6 @@ export default function ProjectPage({
   //get id from url
   const searchParams = useSearchParams();
   const projectId = searchParams.get("id");
-  console.log(projectId);
-
   //get language from local storage
   const lng = localStorage.getItem("langage");
   const projectContent = require(`@/app/content/${lng}/projects/content.json`);
