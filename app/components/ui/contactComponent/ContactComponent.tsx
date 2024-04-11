@@ -1,7 +1,10 @@
 "use client";
+import { setIsModalVisible } from "@/app/redux/Slices/modalIsVisibleSlice";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import astroContact from "../../../assets/img/astroContact.png";
@@ -15,17 +18,20 @@ import Btn from "../btn/Btn";
 import InputComponent from "../inputComponent/InputComponent";
 import style from "./contactComponent.module.css";
 const schema = yup.object({
-  firstname: yup.string().required("Champ obligatoire !"),
+  name: yup.string().required("Champ obligatoire !"),
   email: yup.string().email().required("Champ obligatoire !"),
   message: yup.string().required("Champ obligatoire !"),
 });
 
 interface ContactFormFields {
-  firstname: string;
+  name: string;
   email: string;
   message: string;
 }
 export default function ContactComponent() {
+  const dispatch = useAppDispatch();
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/contactSection/content.json`);
   const {
     register,
     handleSubmit,
@@ -34,9 +40,28 @@ export default function ContactComponent() {
     resolver: yupResolver(schema),
   });
   const componentRef = useRef(null);
-
+  const [loading, setLoading] = useState(false);
   const onSubmit = (values: ContactFormFields) => {
-    console.log(values);
+    setLoading(true);
+    const { name, email, message } = values;
+    axios
+      .post("https://sendemail-zycn5dhvma-uc.a.run.app", {
+        name: name,
+        email: email,
+        message: message,
+      })
+      .then((response) => {
+        setLoading(false);
+        if (response.data == "Email sent successfully") {
+          dispatch(setIsModalVisible(true));
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert(
+          "oops, une erreur s'est porduite lors de l'envoie du fomulaire. Veuillez réessayer !"
+        );
+      });
   };
 
   return (
@@ -51,30 +76,35 @@ export default function ContactComponent() {
         <Image className={style.astroImg} src={astroContact} alt="astronaute" />
       </div>
       <div className={style.formContainer}>
+        <div>
+          <h3>{content.label} </h3>
+          <h2>{content.title}</h2>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputComponent
-            placeholderText="Nom"
+            placeholderText={content.formLabel_1}
             register={register}
-            registerText="firstname"
+            registerText="name"
             type="text"
             errors={errors}
           />
           <InputComponent
-            placeholderText="Email"
+            placeholderText={content.formLabel_2}
             register={register}
             registerText="email"
             type="text"
             errors={errors}
           />
           <InputComponent
-            placeholderText="Message"
+            placeholderText={content.formLabel_3}
             register={register}
             registerText="message"
             type="textarea"
             errors={errors}
           />
-
-          <Btn title="Contact" onClick={() => console.log("")} />
+          <div className={style.btnContainer}>
+            <Btn title={content.btnText} loading={loading} />
+          </div>
         </form>
       </div>
     </div>

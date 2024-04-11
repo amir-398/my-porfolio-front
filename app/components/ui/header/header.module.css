@@ -1,9 +1,14 @@
 .header {
-  background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 5rem;
   position: fixed;
   z-index: 999;
+}
+.header .bg {
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 .header .headerContainer {
   display: flex;
@@ -30,6 +35,10 @@
   position: relative;
   list-style-type: none;
   cursor: pointer;
+}
+.header .headerContainer .center .navList li.active {
+  color: #008793;
+  font-weight: bold;
 }
 .header .headerContainer .center .navList li::after {
   content: "";
@@ -68,12 +77,95 @@
     display: block;
   }
 }
+.header .headerContainer .rightMobile .hamburgerMenuIcon {
+  --s: 25px; /* control the size */
+  --c: #008793; /* the color */
+  height: var(--s);
+  aspect-ratio: 1;
+  border: none;
+  padding: 0;
+  border-inline: calc(var(--s) / 2) solid rgba(0, 0, 0, 0);
+  box-sizing: content-box;
+  --_g1: linear-gradient(var(--c) 20%, #0000 0 80%, var(--c) 0) no-repeat
+    content-box border-box;
+  --_g2: radial-gradient(
+      circle closest-side at 50% 12.5%,
+      var(--c) 95%,
+      #0000
+    )
+    repeat-y content-box border-box;
+  background: var(--_g2) left var(--_p, 0px) top, var(--_g1) left calc(var(--s) / 10 + var(--_p, 0px)) top, var(--_g2) right var(--_p, 0px) top, var(--_g1) right calc(var(--s) / 10 + var(--_p, 0px)) top;
+  background-size: 20% 80%, 40% 100%;
+  position: relative;
+  clip-path: inset(0 25%);
+  -webkit-mask: linear-gradient(90deg, rgba(0, 0, 0, 0), #000 25% 75%, rgba(0, 0, 0, 0));
+  cursor: pointer;
+  transition: background-position 0.3s var(--_s, 0.3s), clip-path 0s var(--_s, 0.6s);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.header .headerContainer .rightMobile .hamburgerMenuIcon:before,
+.header .headerContainer .rightMobile .hamburgerMenuIcon:after {
+  content: "";
+  position: absolute;
+  border-radius: var(--s);
+  inset: 40% 0;
+  background: var(--c);
+  transition: transform 0.3s calc(0.3s - var(--_s, 0.3s));
+}
+.header .headerContainer .rightMobile .hamburgerMenuIcon:checked {
+  clip-path: inset(0);
+  --_p: calc(-1 * var(--s));
+  --_s: 0s;
+}
+.header .headerContainer .rightMobile .hamburgerMenuIcon:checked:before {
+  transform: rotate(45deg);
+}
+.header .headerContainer .rightMobile .hamburgerMenuIcon:checked:after {
+  transform: rotate(-45deg);
+}
+.header .headerContainer .rightMobile .hamburgerMenuIcon:focus-visible {
+  clip-path: none;
+  -webkit-mask: none;
+  border: none;
+  outline: 2px solid var(--c);
+  outline-offset: 5px;
+}
 .header .hamburgerMenu {
   backdrop-filter: blur(10px);
-  width: 100vh;
-  margin-top: -5px;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  margin-top: -6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-100%);
 }
-.header .hamburgerMenu > div > nav {
+.header .hamburgerMenu.visible {
+  animation: 1s ease-in-out forwards slideIn;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.header .hamburgerMenu.hidden {
+  animation: 1s ease-in-out forwards slideOut;
+}
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.header .hamburgerMenu > ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,6 +173,7 @@
   color: #fff;
   font-size: 1.2rem;
   gap: 2rem;
+  margin-bottom: 6rem;
 }
 
 /*# sourceMappingURL=header.module.css.map */

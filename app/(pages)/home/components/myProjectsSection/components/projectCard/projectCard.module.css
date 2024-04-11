@@ -1,5 +1,5 @@
 .projectCardContainer {
-  margin: 4rem 0;
+  margin-bottom: 4rem;
   width: 100%;
   height: 20rem;
   background: -webkit-linear-gradient(45deg, #051937 0%, #004d7a 20%, #008793 60%, #00bf72 70%, #a8eb12 100%);
@@ -34,6 +34,19 @@
 .projectCardContainer div:nth-child(2) {
   justify-content: center;
   align-items: center;
+}
+.projectCardContainer div .btnContainer {
+  width: 100%;
+}
+@media screen and (max-width : 768px) {
+  .projectCardContainer div .btnContainer button {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width : 768px) {
+  .projectCardContainer div .btnContainer {
+    margin-top: 1.5rem;
+  }
 }
 .projectCardContainer.projectCardVisible {
   animation: cardAnim 1s forwards ease-in-out;

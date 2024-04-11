@@ -1,38 +1,114 @@
 "use client";
+import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { slide as Menu } from "react-burger-menu";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
+
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const headerContent = require(`@/app/content/${lng}/header/content.json`);
+  // use pathname
+  const dispatch = useAppDispatch();
+  const checkboxRef = useRef<HTMLInputElement>(null);
+  const pathname = usePathname();
+  const currentUrl = pathname.split("/")[1];
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean | null>(null);
+
+  const activeSection = useAppSelector(
+    (state) => state.activeSectionSlice.activeSection
+  );
+
+  useEffect(() => {
+    if (currentUrl == "mes-projets") {
+      dispatch(setActiveSection("projects"));
+    }
+  }, [currentUrl]);
+
+  // if the menu is open, disable the scroll
+  useEffect(() => {
+    if (isMenuOpen) document.body.style.overflow = " hidden hidden";
+    else document.body.style.overflow = "hidden auto";
+  }, [isMenuOpen]);
+
+  // handle scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerHeight = document.querySelector("header")?.clientHeight;
+      window.scrollTo({
+        top: section.offsetTop - headerHeight!,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const currentHash = window && window.location.hash;
+    if (currentHash) {
+      const sectionId = currentHash.replace("#", "");
+      scrollToSection(sectionId);
+    }
+  }, []);
+  const getInitialCheckboxState = () => {
+    return lng === "en" ? true : false;
+  };
+  // langage checkbox
+  const [ischeckBoxChecked, setIscheckBoxChecked] = useState<boolean>(
+    getInitialCheckboxState()
+  );
+
+  const handleLangageChange = () => {
+    const newCheckedState = !ischeckBoxChecked;
+    setIscheckBoxChecked(newCheckedState);
+    localStorage.setItem("langage", newCheckedState ? "en" : "fr");
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    const langageStorage = localStorage.getItem("langage");
+    setIscheckBoxChecked(langageStorage === "en");
+  }, []);
+
   return (
     <header className={style.header}>
+      <div className={style.bg}></div>
       <PageContainer>
         <div className={style.headerContainer}>
           <div className={style.logoContainer}>
-            <Image src={logo} alt="logo" width={100} height={100} />
+            <Link href="/">
+              <Image src={logo} alt="logo" width={100} height={100} />
+            </Link>
           </div>
           <div className={style.center}>
             <ul className={style.navList}>
-              <li>Accueil</li>
-              <li>À propos</li>
-              <li>Mes projets</li>
-              <li>Mes compétences</li>
-              <li>Contact</li>
+              {headerContent.map((item: Record<string, string | number>) => (
+                <li
+                  key={item.id}
+                  className={
+                    activeSection === item.sectionId ? style.active : undefined
+                  }
+                >
+                  <Link href={`/#${item.sectionId}`}>{item.title}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className={style.right}>
             <label className="relative inline-flex items-center justify-center cursor-pointer">
               <input
+                ref={checkboxRef}
                 type="checkbox"
                 value=""
                 className="sr-only peer"
-                onClick={() => console.log("lol")}
+                onClick={handleLangageChange}
+                checked={ischeckBoxChecked}
+                readOnly
               />
               <p
                 style={{
@@ -51,32 +127,39 @@ export default function Header() {
             </label>
           </div>
           <div className={style.rightMobile}>
-            <RxHamburgerMenu
-              color="red"
-              size={30}
+            <input
+              type="checkbox"
+              role="button"
+              aria-label="Display the menu"
+              className={style.hamburgerMenuIcon}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
         </div>
       </PageContainer>
-      <Menu
-        className={style.hamburgerMenu}
-        isOpen={isMenuOpen}
-        width={"100%"}
-        noOverlay
-        disableOverlayClick
-        styles={{
-          bmBurgerButton: {
-            display: "none !important",
-          },
-        }}
+      <div
+        className={[
+          style.hamburgerMenu,
+          isMenuOpen
+            ? style.visible
+            : isMenuOpen != null
+            ? style.hidden
+            : undefined,
+        ].join(" ")}
       >
-        <Link href={"/"}>Accueil</Link>
-        <Link href={"/"}>À propos</Link>
-        <Link href={"/"}>Mes projets</Link>
-        <Link href={"/"}>Mes compétences</Link>
-        <Link href={"/"}>Contact</Link>
-      </Menu>
+        <ul>
+          {headerContent.map((item: Record<string, string | number>) => (
+            <li
+              key={item.id}
+              className={
+                activeSection === item.sectionId ? style.active : undefined
+              }
+            >
+              <Link href={`/#${item.sectionId}`}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 }

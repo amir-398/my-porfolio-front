@@ -1,0 +1,7 @@
+[
+  { "id": 1, "title": "Accueil", "sectionId": "landing-section" },
+  { "id": 2, "title": "À propos", "sectionId": "presentation" },
+  { "id": 3, "title": "Mes projets", "sectionId": "projects" },
+  { "id": 4, "title": "Mes compétences", "sectionId": "skills" },
+  { "id": 5, "title": "Contact", "sectionId": "contact" }
+]

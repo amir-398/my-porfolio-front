@@ -1,14 +1,26 @@
+@import "../../../../../../style_constants/RESPONSIVE";
 .skillCard {
-  width: 15rem;
   height: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  @media #{$sm-media} {
+    height: 10rem;
+  }
   p {
-    font-size: 1.5rem;
+    font-size: clamp(20px, 2vw, 2rem);
     font-weight: 500;
     margin-top: 1rem;
+  }
+  svg {
+    font-size: 5rem;
+    @media #{$xs-media} {
+      font-size: 4rem;
+    }
+    @media #{$xxs-media} {
+      font-size: 3rem;
+    }
   }
 }

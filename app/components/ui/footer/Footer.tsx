@@ -1,10 +1,16 @@
+"use client";
 import github_logo from "@/app/assets/img/icons-github.png";
 import linkedin_logo from "@/app/assets/img/icons-linkedin.png";
 import logo from "@/app/assets/logo/logo_footer.png";
+import { useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
+import Link from "next/link";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./footer.module.css";
 export default function Footer() {
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/contactSection/content.json`);
+  const headerContent = require(`@/app/content/${lng}/header/content.json`);
   return (
     <footer className={style.footer}>
       <div style={{ backdropFilter: " blur(10px)" }}>
@@ -13,39 +19,37 @@ export default function Footer() {
             <div className={style.left}>
               <Image src={logo} alt="logo" width={100} height={100} />
               <h1>Amir Meberbeche</h1>
-              <p>
-                un voyageur des mondes du code, actuellement en quête de
-                maîtrise en tant que développeur web full-stack junior
-              </p>
+              <p>{content.description}</p>
             </div>
             <div className={style.center}>
-              <h2>Plan du site</h2>
+              <h2> {content.title}</h2>
               <ul>
-                <li>
-                  <a href="#home">Accueil</a>
-                </li>
-                <li>
-                  <a href="#about">A propos</a>
-                </li>
-                <li>
-                  <a href="#skills">Compétences</a>
-                </li>
-                <li>
-                  <a href="#projects">Projets</a>
-                </li>
-                <li>
-                  <a href="#contact">Contact</a>
-                </li>
+                {headerContent.map(
+                  (item: Record<string, string | number>, index: number) => (
+                    <li key={index}>
+                      <Link href={`#${String(item.sectionId)}`}>
+                        {item.title}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
             <div className={style.right}>
-              <Image
-                src={linkedin_logo}
-                alt="linkedin"
-                width={50}
-                height={50}
-              />
-              <Image src={github_logo} alt="linkedin" width={50} height={50} />
+              <Link
+                href={"https://www.linkedin.com/in/amir-meberbeche-337968249/"}
+                target="_blanck"
+              >
+                <Image
+                  src={linkedin_logo}
+                  alt="linkedin"
+                  width={50}
+                  height={50}
+                />
+              </Link>
+              <Link href={"https://github.com/amir-398"} target="_blanck">
+                <Image src={github_logo} alt="guthub" width={50} height={50} />
+              </Link>
             </div>
           </div>
         </PageContainer>

@@ -2,29 +2,41 @@
 .presentationSectionContainer {
   .container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    h2 {
-      align-self: flex-start;
-    }
+
     @media #{$sm-media} {
-      flex-direction: column;
+      flex-direction: column-reverse;
     }
-    div {
+    .left {
+      h2 {
+        align-self: flex-start;
+        font-size: 2rem;
+        font-family: Montserrat;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        display: none;
+        @media #{$sm-media} {
+          display: block;
+        }
+      }
       p {
         color: #fff;
         font-family: spaceMono;
         font-size: 0.9rem;
       }
+    }
+    .right {
       .amirImgContainer {
         width: 15rem;
         height: 15rem;
         border-radius: 50%;
         overflow: hidden;
+        margin-left: 3rem;
+        @media #{$sm-media} {
+          margin-bottom: 1rem;
+          margin-left: 0;
+        }
       }
-    }
-    .left {
-      padding: 1rem;
     }
   }
 }

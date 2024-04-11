@@ -6,12 +6,18 @@
   font-family: "spaceMono";
   src: url(./assets/fonts/SpaceMono-Regular.ttf);
 }
-body {
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-Regular.ttf");
+}
+body,
+html {
   background: url("./assets/img/3.png");
   background-size: 124px;
-  overflow-x: hidden;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

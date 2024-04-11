@@ -1,5 +1,4 @@
 .skillCard {
-  width: 15rem;
   height: 15rem;
   display: flex;
   flex-direction: column;
@@ -7,10 +6,28 @@
   align-items: center;
   border-radius: 5px;
 }
+@media screen and (max-width : 768px) {
+  .skillCard {
+    height: 10rem;
+  }
+}
 .skillCard p {
-  font-size: 1.5rem;
+  font-size: clamp(20px, 2vw, 2rem);
   font-weight: 500;
   margin-top: 1rem;
+}
+.skillCard svg {
+  font-size: 5rem;
+}
+@media screen and (max-width : 426px) {
+  .skillCard svg {
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width : 375px) {
+  .skillCard svg {
+    font-size: 3rem;
+  }
 }
 
 /*# sourceMappingURL=skillCard.module.css.map */

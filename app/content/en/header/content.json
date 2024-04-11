@@ -1,0 +1,7 @@
+[
+  { "id": 1, "title": "Home", "sectionId": "landing-section" },
+  { "id": 2, "title": "About", "sectionId": "presentation" },
+  { "id": 3, "title": "My Projects", "sectionId": "projects" },
+  { "id": 4, "title": "My Skills", "sectionId": "skills" },
+  { "id": 5, "title": "Contact", "sectionId": "contact" }
+]
