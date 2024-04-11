@@ -165,6 +165,11 @@
     transform: translateX(-100%);
   }
 }
+.header .hamburgerMenu label {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
 .header .hamburgerMenu > ul {
   display: flex;
   flex-direction: column;
@@ -174,6 +179,10 @@
   font-size: 1.2rem;
   gap: 2rem;
   margin-bottom: 6rem;
+}
+.header .hamburgerMenu > ul li.active {
+  color: #008793;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=header.module.css.map */
