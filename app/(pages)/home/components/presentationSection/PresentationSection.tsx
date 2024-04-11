@@ -11,15 +11,12 @@ export default function PresentationSection() {
       <div className={style.presentationSectionContainer}>
         <div className={style.container}>
           <div className={style.left}>
-            <h2>{content.title_4}</h2>
-
+            <h3>{content.label}</h3>
+            <h2>{content.title}</h2>
             <p>{content.description[0]}</p>
             <br />
-
             <p>{content.description[1]}</p>
-
             <br />
-
             <p>{content.description[2]}</p>
           </div>
           <div className={style.right}>
