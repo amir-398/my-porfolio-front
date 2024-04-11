@@ -29,7 +29,9 @@ export default function Footer() {
                 {headerContent.map(
                   (item: Record<string, string | number>, index: number) => (
                     <li key={index}>
-                      <Link href={String(item.sectionId)}>{item.title}</Link>
+                      <Link href={`#${String(item.sectionId)}`}>
+                        {item.title}
+                      </Link>
                     </li>
                   )
                 )}
