@@ -3,6 +3,7 @@ import AnimatedTitle from "@/app/components/ui/animatedTitle/AnimatedTitle";
 import Btn from "@/app/components/ui/btn/Btn";
 import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import style from "./page.module.css";
 export default function ProjectPage({
   params,
@@ -10,14 +11,15 @@ export default function ProjectPage({
   params: { projectId: string };
 }) {
   //get id from url
-  const { projectId } = params;
+  const searchParams = useSearchParams();
+  const projectId = searchParams.get("id");
+  console.log(projectId);
 
   //get language from local storage
   const lng = localStorage.getItem("langage");
-  console.log(lng);
   const projectContent = require(`@/app/content/${lng}/projects/content.json`);
   const projetContent = projectContent.find(
-    (project: any) => project.title == projectId.replace(/_/g, " ")
+    (project: any) => project.id == projectId
   );
 
   const title = projetContent?.title;

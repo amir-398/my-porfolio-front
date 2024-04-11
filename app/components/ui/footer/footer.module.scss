@@ -1,16 +1,23 @@
+@import "../../../style_constants/RESPONSIVE";
 .footer {
   .footerContainer {
     padding: 2rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media #{$sm-media} {
+      flex-direction: column;
+      gap: 2rem;
+    }
     .left {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 30%;
-
+      @media #{$sm-media} {
+        width: 100%;
+      }
       h1 {
         margin: 1rem 0;
       }
@@ -23,6 +30,9 @@
       width: 60%;
       color: #fff;
       text-align: center;
+      @media #{$sm-media} {
+        width: 100%;
+      }
       h2 {
         margin-bottom: 1rem;
       }
@@ -43,6 +53,10 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
+      @media #{$sm-media} {
+        width: 100%;
+        flex-direction: row;
+      }
     }
   }
   .copyrightsContainer {

@@ -5,18 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { slide as Menu } from "react-burger-menu";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
-export default function Header({ pageUrl }: { pageUrl: string }) {
+
+export default function Header() {
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const headerContent = require(`@/app/content/${lng}/header/content.json`);
   // use pathname
   const dispatch = useAppDispatch();
   const checkboxRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const currentUrl = pathname.split("/")[1];
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const currentHash = window && window?.location.hash;
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean | null>(null);
+
   const activeSection = useAppSelector(
     (state) => state.activeSectionSlice.activeSection
   );
@@ -26,14 +28,6 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
       dispatch(setActiveSection("projects"));
     }
   }, [currentUrl]);
-
-  const navItems = [
-    { id: 1, title: "Accueil", sectionId: "landing-section" },
-    { id: 2, title: "À propos", sectionId: "presentation" },
-    { id: 3, title: "Mes projets", sectionId: "projects" },
-    { id: 4, title: "Mes compétences", sectionId: "skills" },
-    { id: 5, title: "Contact", sectionId: "contact" },
-  ];
 
   // if the menu is open, disable the scroll
   useEffect(() => {
@@ -54,25 +48,25 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
   };
 
   useEffect(() => {
+    const currentHash = window && window.location.hash;
     if (currentHash) {
       const sectionId = currentHash.replace("#", "");
       scrollToSection(sectionId);
     }
-  }, [currentHash]);
+  }, []);
   const getInitialCheckboxState = () => {
-    const langageStorage = localStorage.getItem("langage");
-    return langageStorage === "en"; // Returns true if "en", false otherwise
+    return lng === "en" ? true : false;
   };
   // langage checkbox
   const [ischeckBoxChecked, setIscheckBoxChecked] = useState<boolean>(
     getInitialCheckboxState()
   );
-  console.log(ischeckBoxChecked);
 
   const handleLangageChange = () => {
     const newCheckedState = !ischeckBoxChecked;
     setIscheckBoxChecked(newCheckedState);
-    localStorage.setItem("langage", newCheckedState ? "en" : "fr"); // Immediately update local storage
+    localStorage.setItem("langage", newCheckedState ? "en" : "fr");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -86,11 +80,13 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
       <PageContainer>
         <div className={style.headerContainer}>
           <div className={style.logoContainer}>
-            <Image src={logo} alt="logo" width={100} height={100} />
+            <Link href="/">
+              <Image src={logo} alt="logo" width={100} height={100} />
+            </Link>
           </div>
           <div className={style.center}>
             <ul className={style.navList}>
-              {navItems.map((item) => (
+              {headerContent.map((item: Record<string, string | number>) => (
                 <li
                   key={item.id}
                   className={
@@ -112,6 +108,7 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
                 className="sr-only peer"
                 onClick={handleLangageChange}
                 checked={ischeckBoxChecked}
+                readOnly
               />
               <p
                 style={{
@@ -140,20 +137,29 @@ export default function Header({ pageUrl }: { pageUrl: string }) {
           </div>
         </div>
       </PageContainer>
-      <Menu
-        className={style.hamburgerMenu}
-        isOpen={isMenuOpen}
-        width={"100%"}
-        noOverlay
-        disableOverlayClick
-        customBurgerIcon={false}
+      <div
+        className={[
+          style.hamburgerMenu,
+          isMenuOpen
+            ? style.visible
+            : isMenuOpen != null
+            ? style.hidden
+            : undefined,
+        ].join(" ")}
       >
-        <Link href={"/"}>Accueil</Link>
-        <Link href={"/"}>À propos</Link>
-        <Link href={"/"}>Mes projets</Link>
-        <Link href={"/"}>Mes compétences</Link>
-        <Link href={"/"}>Contact</Link>
-      </Menu>
+        <ul>
+          {headerContent.map((item: Record<string, string | number>) => (
+            <li
+              key={item.id}
+              className={
+                activeSection === item.sectionId ? style.active : undefined
+              }
+            >
+              <Link href={`/#${item.sectionId}`}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import { setIsModalVisible } from "@/app/redux/Slices/modalIsVisibleSlice";
-import { useAppDispatch } from "@/app/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import Image from "next/image";
@@ -30,6 +30,8 @@ interface ContactFormFields {
 }
 export default function ContactComponent() {
   const dispatch = useAppDispatch();
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/contactSection/content.json`);
   const {
     register,
     handleSubmit,
@@ -75,33 +77,33 @@ export default function ContactComponent() {
       </div>
       <div className={style.formContainer}>
         <div>
-          <h3>Contact</h3>
-          <h2>Une question ? Un projet ?</h2>
+          <h3>{content.label} </h3>
+          <h2>{content.title}</h2>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputComponent
-            placeholderText="Nom"
+            placeholderText={content.formLabel_1}
             register={register}
             registerText="name"
             type="text"
             errors={errors}
           />
           <InputComponent
-            placeholderText="Email"
+            placeholderText={content.formLabel_2}
             register={register}
             registerText="email"
             type="text"
             errors={errors}
           />
           <InputComponent
-            placeholderText="Message"
+            placeholderText={content.formLabel_3}
             register={register}
             registerText="message"
             type="textarea"
             errors={errors}
           />
           <div className={style.btnContainer}>
-            <Btn title="Terminer la mission" loading={loading} />
+            <Btn title={content.btnText} loading={loading} />
           </div>
         </form>
       </div>
