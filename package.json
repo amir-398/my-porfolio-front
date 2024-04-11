@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "watch:scss": "npm-run-all --parallel login inputComponent btn landingSection header pageContainer presentationSection animatedTitle myProjectsSection projectCard skillsSection skillCard contactSection contactComponent footer modalComponent projectPage loadingComponent",
-    "projectPage": "sass --watch ./app/(pages)/mes-projets/[projectId]/page.module.scss ./app/(pages)/mes-projets/[projectId]/page.module.css",
+    "projectPage": "sass --watch ./app/(pages)/mes-projets/page.module.scss ./app/(pages)/mes-projets/page.module.css",
     "login": "sass --watch ./app/(pages)/login/page.module.scss ./app/(pages)/login/page.module.css",
     "landingSection": "sass --watch ./app/(pages)/home/components/landingSection/landingSection.module.scss ./app/(pages)/home/components/landingSection/landingSection.module.css",
     "presentationSection": "sass --watch ./app/(pages)/home/components/presentationSection/presentationSection.module.scss ./app/(pages)/home/components/presentationSection/presentationSection.module.css",

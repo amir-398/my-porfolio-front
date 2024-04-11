@@ -2,17 +2,15 @@
 import github_logo from "@/app/assets/img/icons-github.png";
 import linkedin_logo from "@/app/assets/img/icons-linkedin.png";
 import logo from "@/app/assets/logo/logo_footer.png";
+import { useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./footer.module.css";
 export default function Footer() {
-  const content = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/home/contactSection/content.json`);
-  const headerContent = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/header/content.json`);
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/contactSection/content.json`);
+  const headerContent = require(`@/app/content/${lng}/header/content.json`);
   return (
     <footer className={style.footer}>
       <div style={{ backdropFilter: " blur(10px)" }}>

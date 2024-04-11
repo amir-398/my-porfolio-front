@@ -1,16 +1,20 @@
 "use client";
 import Btn from "@/app/components/ui/btn/Btn";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import style from "./projectCard.module.css";
 interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
+  id: number;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
-  const { title, description, image } = props;
+  const router = useRouter();
+  const { title, description, image, id } = props;
+  const searchParams = useSearchParams();
   const animatedContainerRef = useRef<HTMLDivElement>(null);
   const [isCardVisible, setIsCardVisible] = useState<boolean | undefined>(
     undefined
@@ -38,6 +42,12 @@ export default function ProjectCard(props: ProjectCardProps) {
     };
   }, []);
 
+  const handleBtnClick = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set("id", id.toString());
+    router.push(`/mes-projets?${params.toString()}`);
+  };
+
   return (
     <div
       className={[
@@ -54,10 +64,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         <h4>{title}</h4>
         <p>{description}</p>
         <div className={style.btnContainer}>
-          <Btn
-            title="Voir le projet"
-            href={`/mes-projets/${title.replace(/\s+/g, "_")}`}
-          />
+          <Btn title="Voir le projet" onClick={handleBtnClick} />
         </div>
       </div>
       <div>

@@ -2,16 +2,16 @@ import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
 
 import ProjectCard from "./components/projectCard/ProjectCard";
 import style from "./myProjectsSection.module.css";
+import { useAppSelector } from "@/app/redux/hooks";
 export default function MyProjectsSection() {
-  const lng = localStorage.getItem("langage");
+  const lng = useAppSelector((state) => state.langageSlice.langage);
   const projectContent = require(`@/app/content/${lng}/projects/content.json`);
-  const projetSectionContent = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/home/projectsSection/content.json`);
+  const projetSectionContent = require(`@/app/content/${lng}/home/projectsSection/content.json`);
   interface contentCard {
     title: string;
     description: string;
     image: string;
+    id: number;
   }
   return (
     <PageContainer>

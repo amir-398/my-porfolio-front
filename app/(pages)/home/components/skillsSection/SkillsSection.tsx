@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { IoLogoFigma, IoLogoJavascript } from "react-icons/io5";
 
+import { useAppSelector } from "@/app/redux/hooks";
 import {
   SiAdobe,
   SiMysql,
@@ -22,9 +23,8 @@ import { TbBrandReactNative } from "react-icons/tb";
 import SkillCard from "./components/skillCard/SkillCard";
 import style from "./skillsSection.module.css";
 export default function SkillsSection() {
-  const content = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/home/skillsSection/content.json`);
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/skillsSection/content.json`);
   const skills = [
     {
       icon: <FaHtml5 color="#FF5723" />,

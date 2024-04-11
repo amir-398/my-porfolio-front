@@ -1,6 +1,6 @@
 "use client";
 import { setIsModalVisible } from "@/app/redux/Slices/modalIsVisibleSlice";
-import { useAppDispatch } from "@/app/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import Image from "next/image";
@@ -30,9 +30,8 @@ interface ContactFormFields {
 }
 export default function ContactComponent() {
   const dispatch = useAppDispatch();
-  const content = require(`@/app/content/${localStorage.getItem(
-    "langage"
-  )}/home/contactSection/content.json`);
+  const lng = useAppSelector((state) => state.langageSlice.langage);
+  const content = require(`@/app/content/${lng}/home/contactSection/content.json`);
   const {
     register,
     handleSubmit,

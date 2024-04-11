@@ -26,6 +26,7 @@ export default function Modal() {
           src={star}
           alt="star"
           width={size}
+          key={i}
         />
       );
     }
