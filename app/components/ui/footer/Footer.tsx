@@ -38,13 +38,20 @@ export default function Footer() {
               </ul>
             </div>
             <div className={style.right}>
-              <Image
-                src={linkedin_logo}
-                alt="linkedin"
-                width={50}
-                height={50}
-              />
-              <Image src={github_logo} alt="linkedin" width={50} height={50} />
+              <Link
+                href={"https://www.linkedin.com/in/amir-meberbeche-337968249/"}
+                target="_blanck"
+              >
+                <Image
+                  src={linkedin_logo}
+                  alt="linkedin"
+                  width={50}
+                  height={50}
+                />
+              </Link>
+              <Link href={"https://github.com/amir-398"} target="_blanck">
+                <Image src={github_logo} alt="guthub" width={50} height={50} />
+              </Link>
             </div>
           </div>
         </PageContainer>
