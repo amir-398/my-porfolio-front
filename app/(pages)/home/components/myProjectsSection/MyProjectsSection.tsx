@@ -12,6 +12,7 @@ export default function MyProjectsSection() {
     title: string;
     description: string;
     image: string;
+    id: number;
   }
   return (
     <PageContainer>
