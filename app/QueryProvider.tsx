@@ -3,7 +3,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
-
 import { setLangage } from "./redux/Slices/langageSlice";
 import { useAppDispatch } from "./redux/hooks";
 const queryClient = new QueryClient();
