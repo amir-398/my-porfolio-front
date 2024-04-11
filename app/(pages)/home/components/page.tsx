@@ -1,27 +1,76 @@
+"use client";
+import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
+import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { useEffect, useRef } from "react";
+import AnimatedTitle from "../../../components/ui/animatedTitle/AnimatedTitle";
 import ContactSection from "./contactSection/ContactSection";
 import LandingSection from "./landingSection/LandingSection";
 import MyProjectsSection from "./myProjectsSection/MyProjectsSection";
 import PresentationSection from "./presentationSection/PresentationSection";
 import SkillsSection from "./skillsSection/SkillsSection";
-
 export default function Home() {
+  const dispatch = useAppDispatch();
+  const animatedContentTitle = require(`@/app/content/${localStorage.getItem(
+    "langage"
+  )}/animatedTitles/content.json`);
+
+  const observer = useRef<any>(null);
+  const landingSectionRef = useRef<HTMLDivElement>(null);
+  const presentationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries.find(
+          (entry) => entry.isIntersecting
+        )?.target;
+        //Update state with the visible section ID
+        if (visibleSection) {
+          dispatch(setActiveSection(visibleSection.id));
+        }
+      },
+      {
+        threshold: 0.7,
+      }
+    );
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      observer.current.observe(section);
+    });
+    //Cleanup function to remove observer
+    return () => {
+      sections.forEach((section) => {
+        observer.current.unobserve(section);
+      });
+    };
+  }, []);
   return (
     <div>
-      <section className="landing-section">
+      <section
+        className="landing-section"
+        id="landing-section"
+        ref={landingSectionRef}
+      >
         <LandingSection />
       </section>
-      {/* <AnimatedTitle title="Qui suis je ?" /> */}
-      <section className="presentation">
+      <section className="presentation" id="presentation" ref={presentationRef}>
+        <PageContainer>
+          <AnimatedTitle title={animatedContentTitle[0]} />
+        </PageContainer>
         <PresentationSection />
       </section>
-      {/* <AnimatedTitle title="Développeur web Junior créatif" /> */}
-      <section className="projects">
+
+      <section className="projects" id="projects">
         <MyProjectsSection />
       </section>
-      <section className="skills">
+      <PageContainer>
+        <AnimatedTitle title={animatedContentTitle[1]} />
+      </PageContainer>
+      <section className="skills" id="skills">
         <SkillsSection />
       </section>
-      <section className="contact">
+      <section className="contact" id="contact">
         <ContactSection />
       </section>
     </div>

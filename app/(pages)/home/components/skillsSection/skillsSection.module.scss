@@ -1,4 +1,7 @@
+@import "../../../../style_constants/MARGINS";
+@import "../../../../style_constants/RESPONSIVE";
 .skillsSectionContainer {
+  margin: $marginVertical 0;
   .titleContainer {
     h3 {
       color: #ba68c8;
@@ -16,13 +19,19 @@
       font-family: Montserrat, sans-serif;
       font-weight: 900;
       color: #fff;
-      margin: 1rem 0;
+      margin-bottom: 2rem;
     }
   }
 
   .skillsContainer {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 2rem;
+    @media #{$xs-media} {
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
+    @media #{$xxs-media} {
+      grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+    }
   }
 }

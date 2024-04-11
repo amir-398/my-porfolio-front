@@ -14,11 +14,27 @@
   align-items: center;
   justify-content: center;
 }
-.contactContainer .formContainer h2 {
+.contactContainer .formContainer > div {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+.contactContainer .formContainer > div h3 {
+  color: #ba68c8;
+  font-size: 0.8rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  width: fit-content;
+}
+.contactContainer .formContainer > div h2 {
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  font-family: Montserrat, sans-serif;
+  align-self: flex-start;
 }
 .contactContainer .formContainer form {
   display: flex;
@@ -26,6 +42,14 @@
   align-items: center;
   width: 80%;
   gap: 20px;
+}
+.contactContainer .formContainer form .btnContainer {
+  width: 100%;
+}
+.contactContainer .formContainer form .btnContainer > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .contactContainer .astroContainer {
   display: flex;
@@ -85,6 +109,52 @@
   }
   50% {
     transform: translateY(7px);
+  }
+}
+
+@media screen and (max-width : 1025px) {
+  .formContainer h2 {
+    font-size: 2rem;
+  }
+  .formContainer form .submitBtn {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width : 768px) {
+  .contactContainer {
+    flex-direction: column-reverse;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    transform: translateX(0);
+  }
+  .contactContainer .formContainer {
+    width: 100%;
+    z-index: 1;
+    align-items: flex-start;
+  }
+  .contactContainer .formContainer h2 {
+    font-size: 1.5rem;
+  }
+  .contactContainer .formContainer form {
+    width: 100%;
+  }
+  .contactContainer .astroContainer {
+    width: 100%;
+  }
+  .contactContainer .astroContainer .astroImg {
+    width: 100%;
+    position: static;
+    transform: translateX(-2rem);
+  }
+  .contactContainer .planet05,
+  .contactContainer .planet06,
+  .contactContainer .planet01,
+  .contactContainer .planet02,
+  .contactContainer .planet04,
+  .contactContainer .planet03,
+  .contactContainer .planet06 {
+    display: none;
   }
 }
 

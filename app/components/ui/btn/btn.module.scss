@@ -1,19 +1,35 @@
+@import "../../../style_constants/COLORS";
+@import "../../../style_constants/RESPONSIVE";
 .btnContainer {
   .btnUi {
     background-color: transparent;
     border-radius: 10px;
-    color: #008793;
+    color: $primaryColor;
     width: 20rem;
     height: 3.5rem;
     font-size: 1.3rem;
     font-weight: bold;
-    border: #008793 2px solid;
+    border: $primaryColor 2px solid;
     transition: all 0.3s ease 0s;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
-      background-color: #008793;
+      background-color: $primaryColor;
       color: #fff;
       transform: translateY(-2px);
+    }
+    &:disabled {
+      transform: translateY(0);
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    @media #{$sm-media} {
+      width: 100%;
+      padding: 0 2rem;
+      font-size: 100%;
     }
   }
 }

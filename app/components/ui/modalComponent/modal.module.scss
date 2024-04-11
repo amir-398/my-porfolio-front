@@ -1,0 +1,99 @@
+@import "../../../style_constants/RESPONSIVE";
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  display: none;
+
+  &.modalVisible {
+    display: flex;
+  }
+  .modalContent {
+    background-color: #2f2d43;
+    width: 50%;
+    height: 50%;
+    border-radius: 20px;
+    z-index: 10000;
+    color: #000;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    animation: 0.7s ease-in-out forwards modalAppear;
+    @keyframes modalAppear {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @media #{$md-media} {
+      width: 70%;
+    }
+    @media #{$xs-media} {
+      width: 95%;
+    }
+    svg {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+    h2 {
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      font-family: Montserrat;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      position: relative;
+      z-index: 100;
+    }
+    p {
+      color: #fff;
+      text-align: center;
+      font-family: Montserrat;
+      position: relative;
+      z-index: 100;
+      font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+    }
+    .astronaute_img {
+      position: relative;
+      z-index: 100;
+      width: 30%;
+      animation: 2s ease-in-out 0s infinite alternate astronaut;
+      @keyframes astronaut {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(0.5rem) rotate(5deg);
+        }
+      }
+      @media #{$sm-media} {
+        width: 45%;
+      }
+      @media #{$xs-media} {
+        width: 40%;
+      }
+    }
+    .star {
+      position: absolute;
+    }
+    .moon {
+      position: absolute;
+      left: 2rem;
+      top: 2rem;
+      width: 20%;
+    }
+  }
+}

@@ -1,5 +1,6 @@
+@import "../../../../../../style_constants/RESPONSIVE";
 .projectCardContainer {
-  margin: 4rem 0;
+  margin-bottom: 4rem;
   width: 100%;
   height: 20rem;
   background: -webkit-linear-gradient(
@@ -13,9 +14,16 @@
   border-radius: 20px;
   display: flex;
   padding: 1rem;
+  @media #{$sm-media} {
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
   div {
     width: 50%;
     display: flex;
+    @media #{$sm-media} {
+      width: 100%;
+    }
     &:nth-child(1) {
       flex-direction: column;
       justify-content: space-between;
@@ -29,6 +37,18 @@
     &:nth-child(2) {
       justify-content: center;
       align-items: center;
+    }
+    .btnContainer {
+      width: 100%;
+
+      button {
+        @media #{$sm-media} {
+          margin: 0 auto;
+        }
+      }
+      @media #{$sm-media} {
+        margin-top: 1.5rem;
+      }
     }
   }
 

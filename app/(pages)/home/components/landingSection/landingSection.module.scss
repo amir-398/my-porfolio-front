@@ -1,6 +1,10 @@
+@import "../../../../style_constants/RESPONSIVE";
 .earthImg {
   position: absolute;
   right: 0;
+  top: 0;
+  width: 15%;
+  height: 20%;
 }
 .landingSectionContainer {
   height: 100vh;
@@ -10,7 +14,7 @@
   align-items: center;
   justify-content: center;
   h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: bold;
     background: -webkit-linear-gradient(
       45deg,
@@ -28,7 +32,7 @@
     letter-spacing: 1.8px;
   }
   h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: bold;
     color: #fff;
     text-align: center;
@@ -36,7 +40,7 @@
     letter-spacing: 3px;
   }
   h3 {
-    font-size: 0.9rem;
+    font-size: clamp(0.4rem, 3vw, 0.9rem);
     font-weight: bold;
     color: #fff;
     text-align: center;
@@ -51,8 +55,14 @@
     position: absolute;
     right: 10%;
     top: 80%;
-
     animation: 10s infinite rocketAnim;
+    @media #{$xs-media} {
+      width: 2rem;
+      top: 85%;
+    }
+    @media #{$xxs-media} {
+      display: none;
+    }
   }
   @keyframes rocketAnim {
     0% {

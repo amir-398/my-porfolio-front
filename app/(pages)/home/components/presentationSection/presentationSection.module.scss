@@ -1,23 +1,42 @@
+@import "../../../../style_constants/RESPONSIVE";
 .presentationSectionContainer {
   .container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    div {
+
+    @media #{$sm-media} {
+      flex-direction: column-reverse;
+    }
+    .left {
+      h2 {
+        align-self: flex-start;
+        font-size: 2rem;
+        font-family: Montserrat;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        display: none;
+        @media #{$sm-media} {
+          display: block;
+        }
+      }
       p {
         color: #fff;
         font-family: spaceMono;
         font-size: 0.9rem;
       }
+    }
+    .right {
       .amirImgContainer {
         width: 15rem;
         height: 15rem;
         border-radius: 50%;
         overflow: hidden;
+        margin-left: 3rem;
+        @media #{$sm-media} {
+          margin-bottom: 1rem;
+          margin-left: 0;
+        }
       }
-    }
-    .left {
-      padding: 1rem;
     }
   }
 }

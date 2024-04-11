@@ -1,33 +1,112 @@
 "use client";
+import { setActiveSection } from "@/app/redux/Slices/activeSectionSlice";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { slide as Menu } from "react-burger-menu";
 import logo from "../../../assets/logo/logo_footer.png";
 import PageContainer from "../pageContainer/PageContainer";
 import style from "./header.module.css";
+
 export default function Header() {
+  const headerContent = require(`@/app/content/${localStorage.getItem(
+    "langage"
+  )}/header/content.json`);
+  // use pathname
+  const dispatch = useAppDispatch();
+  const checkboxRef = useRef<HTMLInputElement>(null);
+  const pathname = usePathname();
+  const currentUrl = pathname.split("/")[1];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const currentHash = window && window?.location.hash;
+  const activeSection = useAppSelector(
+    (state) => state.activeSectionSlice.activeSection
+  );
+
+  useEffect(() => {
+    if (currentUrl == "mes-projets") {
+      dispatch(setActiveSection("projects"));
+    }
+  }, [currentUrl]);
+
+  // if the menu is open, disable the scroll
+  useEffect(() => {
+    if (isMenuOpen) document.body.style.overflow = " hidden hidden";
+    else document.body.style.overflow = "hidden auto";
+  }, [isMenuOpen]);
+
+  // handle scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerHeight = document.querySelector("header")?.clientHeight;
+      window.scrollTo({
+        top: section.offsetTop - headerHeight!,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (currentHash) {
+      const sectionId = currentHash.replace("#", "");
+      scrollToSection(sectionId);
+    }
+  }, [currentHash]);
+  const getInitialCheckboxState = () => {
+    const langageStorage = localStorage.getItem("langage");
+    return langageStorage === "en"; // Returns true if "en", false otherwise
+  };
+  // langage checkbox
+  const [ischeckBoxChecked, setIscheckBoxChecked] = useState<boolean>(
+    getInitialCheckboxState()
+  );
+
+  const handleLangageChange = () => {
+    const newCheckedState = !ischeckBoxChecked;
+    setIscheckBoxChecked(newCheckedState);
+    localStorage.setItem("langage", newCheckedState ? "en" : "fr"); // Immediately update local storage
+  };
+
+  useEffect(() => {
+    const langageStorage = localStorage.getItem("langage");
+    setIscheckBoxChecked(langageStorage === "en");
+  }, []);
+
   return (
     <header className={style.header}>
+      <div className={style.bg}></div>
       <PageContainer>
         <div className={style.headerContainer}>
           <div className={style.logoContainer}>
             <Image src={logo} alt="logo" width={100} height={100} />
           </div>
           <div className={style.center}>
-            <ul>
-              <li>Accueil</li>
-              <li>À propos</li>
-              <li>Mes projets</li>
-              <li>Mes compétences</li>
-              <li>Contact</li>
+            <ul className={style.navList}>
+              {headerContent.map((item: Record<string, string | number>) => (
+                <li
+                  key={item.id}
+                  className={
+                    activeSection === item.sectionId ? style.active : undefined
+                  }
+                >
+                  <Link href={`/#${item.sectionId}`}>{item.title}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className={style.right}>
             <label className="relative inline-flex items-center justify-center cursor-pointer">
               <input
+                ref={checkboxRef}
                 type="checkbox"
                 value=""
                 className="sr-only peer"
-                onClick={() => console.log("lol")}
+                onClick={handleLangageChange}
+                checked={ischeckBoxChecked}
               />
               <p
                 style={{
@@ -45,8 +124,31 @@ export default function Header() {
               </span>
             </label>
           </div>
+          <div className={style.rightMobile}>
+            <input
+              type="checkbox"
+              role="button"
+              aria-label="Display the menu"
+              className={style.hamburgerMenuIcon}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            />
+          </div>
         </div>
       </PageContainer>
+      <Menu
+        className={style.hamburgerMenu}
+        isOpen={isMenuOpen}
+        width={"100%"}
+        noOverlay
+        disableOverlayClick
+        customBurgerIcon={false}
+      >
+        <Link href={"/"}>Accueil</Link>
+        <Link href={"/"}>À propos</Link>
+        <Link href={"/"}>Mes projets</Link>
+        <Link href={"/"}>Mes compétences</Link>
+        <Link href={"/"}>Contact</Link>
+      </Menu>
     </header>
   );
 }
