@@ -67,7 +67,8 @@ export default function Header() {
   const handleLangageChange = () => {
     const newCheckedState = !ischeckBoxChecked;
     setIscheckBoxChecked(newCheckedState);
-    localStorage.setItem("langage", newCheckedState ? "en" : "fr"); // Immediately update local storage
+    localStorage.setItem("langage", newCheckedState ? "en" : "fr");
+    window.location.reload();
   };
 
   useEffect(() => {

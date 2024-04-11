@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import QueryProvider from "./QueryProvider";
 import ReduxStoreProvider from "./ReduxStoreProvider";
 import Footer from "./components/ui/footer/Footer";
 import Header from "./components/ui/header/Header";
+import LoadingComponent from "./components/ui/loadingComponent/LoadingComponent";
 import Modal from "./components/ui/modalComponent/Modal";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
@@ -22,10 +24,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxStoreProvider>
           <QueryProvider>
-            <Modal />
-            <Header />
-            {children}
-            <Footer />
+            <Suspense fallback={<LoadingComponent />}>
+              <Modal />
+              <Header />
+              {children}
+              <Footer />
+            </Suspense>
           </QueryProvider>
         </ReduxStoreProvider>
       </body>
