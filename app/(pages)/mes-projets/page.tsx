@@ -2,32 +2,58 @@
 import AnimatedTitle from "@/app/components/ui/animatedTitle/AnimatedTitle";
 import Btn from "@/app/components/ui/btn/Btn";
 import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import style from "./page.module.css";
-import axios from "axios";
 
 export default function ProjectPage() {
   //get id from url
   const searchParams = useSearchParams();
   const projectId = searchParams.get("id");
   //get language from local storage
-  const lng = localStorage.getItem("langage");
-  const projectContent = require(`@/app/content/${lng}/projects/content.json`);
-  const projetContent = projectContent.find(
-    (project: any) => project.id == projectId
-  );
-  const title = projetContent?.title;
-  const introduction = projetContent?.introduction;
-  const client = projetContent?.client;
-  const projectUrl = projetContent?.projectUrl;
-  const date = projetContent?.date;
-  const technologies = projetContent?.technologies.join(", ");
-  const needs = projetContent?.needs;
-  const solutions = projetContent?.solutions;
-  const challenges = projetContent?.challenges;
-  const image = projetContent?.image;
 
+  const lng = localStorage?.getItem("langage");
+  console.log(lng);
+
+  // const projectContent = require(`@/app/content/${lng}/projects/content.json`);
+  // const projetContent = projectContent.find(
+  //   (project: any) => project.id == projectId
+  // );
+
+  const getProjectContent = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/projects/${projectId}/${lng}`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const {
+    data: projectContent,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["projectById"],
+    queryFn: getProjectContent,
+  });
+  if (isLoading) return <div>Loading...</div>;
+  if (error) console.log(error);
+
+  const title = projectContent?.title;
+  const introduction = projectContent?.introduction;
+  const client = projectContent?.client;
+  const projectUrl = projectContent?.projectUrl;
+  const date = projectContent?.date;
+  const technologies = projectContent?.technologies.join(", ");
+  const needs = projectContent?.needs;
+  const solutions = projectContent?.solutions;
+  const challenges = projectContent?.challenges;
+  const images = projectContent?.images;
   return (
     <main>
       <PageContainer>
@@ -36,7 +62,7 @@ export default function ProjectPage() {
             <h1>{title} </h1>
             <h2>- WEB DESIGN &amp; DÉVELOPPEMENT WEB -</h2>
 
-            <Image src={image ?? ""} width={600} height={600} alt="lol" />
+            <Image src={images[0] ?? ""} width={600} height={600} alt="lol" />
             <div className={style.projetInfoContainer}>
               <div>
                 <div className={style.separator}></div>
@@ -64,24 +90,18 @@ export default function ProjectPage() {
             </div>
             <div className={style.content}>
               <div className={style.leftContent}>
-                <Image
-                  src={projetContent?.img_1 ?? ""}
-                  width={600}
-                  height={600}
-                  alt="image"
-                />
-                <Image
-                  src={projetContent?.img_2 ?? ""}
-                  width={600}
-                  height={600}
-                  alt="image"
-                />
-                <Image
-                  src={projetContent?.img_3 ?? ""}
-                  width={600}
-                  height={600}
-                  alt="image"
-                />
+                {images.map(
+                  (img: string, index: number) =>
+                    index !== 0 && (
+                      <Image
+                        key={index}
+                        src={img}
+                        width={600}
+                        height={600}
+                        alt="image"
+                      />
+                    )
+                )}
               </div>
               <div className={style.rightContent}>
                 <div className={style.animatedTitleContainer}>

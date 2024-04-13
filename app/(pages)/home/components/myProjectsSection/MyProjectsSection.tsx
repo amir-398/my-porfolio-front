@@ -15,7 +15,9 @@ export default function MyProjectsSection() {
   }
   const getProjectContent = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/projects");
+      const response = await axios.get(
+        `http://localhost:3001/projects/cards/${lng}`
+      );
       return response.data;
     } catch (error) {
       throw error;
