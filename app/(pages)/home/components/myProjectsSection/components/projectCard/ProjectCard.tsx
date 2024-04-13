@@ -14,6 +14,7 @@ interface ProjectCardProps {
 export default function ProjectCard(props: ProjectCardProps) {
   const router = useRouter();
   const { title, description, image, id } = props;
+  console.log(image);
   const searchParams = useSearchParams();
   const animatedContainerRef = useRef<HTMLDivElement>(null);
   const [isCardVisible, setIsCardVisible] = useState<boolean | undefined>(

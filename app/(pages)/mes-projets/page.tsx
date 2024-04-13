@@ -5,11 +5,9 @@ import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import style from "./page.module.css";
-export default function ProjectPage({
-  params,
-}: {
-  params: { projectId: string };
-}) {
+import axios from "axios";
+
+export default function ProjectPage() {
   //get id from url
   const searchParams = useSearchParams();
   const projectId = searchParams.get("id");
@@ -19,7 +17,6 @@ export default function ProjectPage({
   const projetContent = projectContent.find(
     (project: any) => project.id == projectId
   );
-
   const title = projetContent?.title;
   const introduction = projetContent?.introduction;
   const client = projetContent?.client;
@@ -30,6 +27,7 @@ export default function ProjectPage({
   const solutions = projetContent?.solutions;
   const challenges = projetContent?.challenges;
   const image = projetContent?.image;
+
   return (
     <main>
       <PageContainer>
