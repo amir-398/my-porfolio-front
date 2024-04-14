@@ -1,8 +1,7 @@
 "use client";
-
+import { usePostLogin } from "@/app/hooks/login";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import style from "./page.module.css";
@@ -11,7 +10,10 @@ const schema = yup.object({
   identifiant: yup.string(),
   password: yup.string(),
 });
-
+type FormData = {
+  identifiant: string;
+  password: string;
+};
 export default function Login() {
   const {
     register,
@@ -20,26 +22,22 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const router = useRouter();
 
-  const onSubmit = (data: Record<string, string>) => {
-    console.log(data);
-    axios
-      .post("http://localhost:3001/login", data)
-      .then((res) => {
-        const token = res.data.token;
-        console.log(token);
-        localStorage.setItem("token", token);
-        router.push("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err.request.response);
-      });
+  const { mutate: userPostLogin } = usePostLogin();
+
+  const onSubmit = (data: any) => {
+    userPostLogin(data);
+  };
+
+  const getToken = async () => {
+    const reponse = await axios.get("http://localhost:3001/verifyToken");
+    console.log(reponse);
   };
 
   return (
     <div className={style.loginContainer}>
       <div className={style.loginBox}>
+        <button onClick={getToken}>lol</button>
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.userBox}>
