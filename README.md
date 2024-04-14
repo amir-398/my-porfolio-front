@@ -1,8 +1,5 @@
 # Portfolio Personnel avec Next.js et TypeScript
-![Static Badge](https://img.shields.io/badge/ Amir_)
 ![Static Badge](https://img.shields.io/badge/version-1.0.0-blue)
-![Static Badge](https://img.shields.io/badge/node_js-language-green?logo=nodedotjs)
-![Static Badge](https://img.shields.io/badge/docs_api-swagger-orange?logo=swagger)
 
 Ce projet est un portfolio personnel construit avec Next.js en utilisant TypeScript. Il comprend un front office pour la présentation du portfolio et un back office pour la gestion des contenus.
 
