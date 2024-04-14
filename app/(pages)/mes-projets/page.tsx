@@ -2,48 +2,25 @@
 import AnimatedTitle from "@/app/components/ui/animatedTitle/AnimatedTitle";
 import Btn from "@/app/components/ui/btn/Btn";
 import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useGetProjectContentById } from "@/app/hooks/project";
+import { useAppSelector } from "@/app/redux/hooks";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import style from "./page.module.css";
 
 export default function ProjectPage() {
   //get id from url
+  const lng = useAppSelector((state) => state.langageSlice.langage);
   const searchParams = useSearchParams();
-  const projectId = searchParams.get("id");
-  //get language from local storage
-
-  const lng = localStorage?.getItem("langage");
-  console.log(lng);
-
-  // const projectContent = require(`@/app/content/${lng}/projects/content.json`);
-  // const projetContent = projectContent.find(
-  //   (project: any) => project.id == projectId
-  // );
-
-  const getProjectContent = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/projects/${projectId}/${lng}`
-      );
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  };
+  const projectId = searchParams.get("id") ?? "";
 
   const {
     data: projectContent,
-    error,
     isLoading,
-  } = useQuery({
-    queryKey: ["projectById"],
-    queryFn: getProjectContent,
-  });
+    error,
+  } = useGetProjectContentById(projectId, lng);
   if (isLoading) return <div>Loading...</div>;
   if (error) console.log(error);
-
   const title = projectContent?.title;
   const introduction = projectContent?.introduction;
   const client = projectContent?.client;

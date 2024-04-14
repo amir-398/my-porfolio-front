@@ -1,7 +1,6 @@
 import PageContainer from "@/app/components/ui/pageContainer/PageContainer";
+import { useGetProjectCardContent } from "@/app/hooks/projects";
 import { useAppSelector } from "@/app/redux/hooks";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import ProjectCard from "./components/projectCard/ProjectCard";
 import style from "./myProjectsSection.module.css";
 export default function MyProjectsSection() {
@@ -13,28 +12,18 @@ export default function MyProjectsSection() {
     image: string;
     id: number;
   }
-  const getProjectContent = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/projects/cards/${lng}`
-      );
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  };
 
   const {
     data: projectContent,
-    error,
     isLoading,
-  } = useQuery({
-    queryKey: ["projects"],
-    queryFn: getProjectContent,
-  });
-  if (isLoading) return <div>Loading...</div>;
-  if (error) console.log(error);
-
+    error,
+  } = useGetProjectCardContent(lng);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error...</div>;
+  }
   return (
     <PageContainer>
       <div className={style.myProjectContainer}>
