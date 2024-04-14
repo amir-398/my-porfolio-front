@@ -33,7 +33,8 @@ npm install
 npm run dev
 ```
 ## Structure du Projet
-/votreportfolio
+```bash
+/my-porfolio-front
 |-- pages
 |   |-- index.tsx        # Page d'accueil du front office
 |   |-- api
@@ -43,3 +44,4 @@ npm run dev
 |-- styles              # Fichiers CSS pour le styling global
 |-- lib                 # Bibliothèque de fonctions utiles ou hooks
 |-- admin               # Composants et pages spécifiques au back office
+```
