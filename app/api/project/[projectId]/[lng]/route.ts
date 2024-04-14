@@ -8,7 +8,7 @@ export const GET = async (
   const { projectId, lng } = params;
   try {
     const response = await axios.get(
-      `http://localhost:3000/projects/${projectId}/${lng}`
+      `https://my-porfolio-back-1.onrender.com/projects/${projectId}/${lng}`
     );
     return NextResponse.json(response.data);
   } catch (error) {

@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 const getProjectContentById = async (projectId: string, lng: string) => {
+  const pathname = window.location.href;
   try {
     const response = await axios.get(
-      `http://localhost:3001/api/project/${projectId}/${lng}`
+      `${pathname}/api/project/${projectId}/${lng}`
     );
     return response.data;
   } catch (error) {

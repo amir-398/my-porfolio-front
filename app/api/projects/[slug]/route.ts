@@ -8,7 +8,7 @@ export const GET = async (
   const { slug } = params;
   try {
     const response = await axios.get(
-      `http://localhost:3000/projects/cards/${slug}`
+      `https://my-porfolio-back-1.onrender.com/projects/cards/${slug}`
     );
     return NextResponse.json(response.data);
   } catch (error) {

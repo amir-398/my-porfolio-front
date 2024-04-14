@@ -3,6 +3,7 @@ import { useGetProjectCardContent } from "@/app/hooks/projects";
 import { useAppSelector } from "@/app/redux/hooks";
 import ProjectCard from "./components/projectCard/ProjectCard";
 import style from "./myProjectsSection.module.css";
+
 export default function MyProjectsSection() {
   const lng = useAppSelector((state) => state.langageSlice.langage);
   const projetSectionContent = require(`@/app/content/${lng}/home/projectsSection/content.json`);
@@ -18,6 +19,7 @@ export default function MyProjectsSection() {
     isLoading,
     error,
   } = useGetProjectCardContent(lng);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
