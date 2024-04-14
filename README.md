@@ -21,8 +21,8 @@ Pour lancer le projet localement, suivez ces étapes :
 1. Clonez le dépôt :
 
 ```bash
-git clone https://github.com/votreusername/votreportfolio.git
-cd votreportfolio
+git clone https://github.com/amir-398/my-porfolio-front.git
+cd my-porfolio-front
 ```
 2. Installez les dépendances :
 ```bash
