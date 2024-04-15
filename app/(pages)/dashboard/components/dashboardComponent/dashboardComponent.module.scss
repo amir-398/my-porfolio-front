@@ -1,0 +1,38 @@
+@import "../../../../style_constants/RESPONSIVE";
+
+.myAccountContainer {
+  padding-top: 5rem;
+
+  .main {
+    width: 80%;
+    margin: 0 auto;
+    @media #{$sm-media} {
+      width: 100%;
+    }
+    .header {
+      margin-bottom: 2rem;
+      h1 {
+        font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+      }
+    }
+    .btnsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 2rem;
+      @media #{$sm-media} {
+        gap: 1rem;
+      }
+      button {
+        font-size: 1rem;
+      }
+
+      .btnActive {
+        background-color: red;
+        transform: scale(1.05);
+      }
+    }
+  }
+}

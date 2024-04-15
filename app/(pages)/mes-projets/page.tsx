@@ -20,6 +20,7 @@ export default function ProjectPage() {
     error,
   } = useGetProjectContentById(projectId, lng);
   if (isLoading) return <div>Loading...</div>;
+
   if (error) console.log(error);
   const title = projectContent?.title;
   const introduction = projectContent?.introduction;

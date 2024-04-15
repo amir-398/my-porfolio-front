@@ -6,6 +6,7 @@ export const GET = async (
   { params }: { params: { projectId: string; lng: string } }
 ) => {
   const { projectId, lng } = params;
+
   try {
     const response = await axios.get(
       `https://my-porfolio-back-1.onrender.com/projects/${projectId}/${lng}`

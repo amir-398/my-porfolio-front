@@ -1,0 +1,65 @@
+@import "../../../../../../../constants/COLORS";
+@import "../../../../../../../constants/RESPONSIVE";
+@import "../../../../../../../constants/MIXINS";
+
+.personalInfoContainer {
+  // photo de profil
+  .myPhotoContainer {
+    @include accountContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    .pen {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    .profilImage {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background-color: $secondaryColor;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .warningContainer {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: -0.8rem;
+      p {
+        color: red;
+        font-size: 0.6rem;
+        justify-self: flex-start;
+      }
+    }
+  }
+  .infoContainer {
+    @include accountContainer;
+    h3 {
+      text-align: center;
+    }
+    form {
+      > div {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

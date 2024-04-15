@@ -1,0 +1,40 @@
+.myAccountContainer {
+  padding-top: 5rem;
+}
+.myAccountContainer .main {
+  width: 80%;
+  margin: 0 auto;
+}
+@media screen and (max-width : 768px) {
+  .myAccountContainer .main {
+    width: 100%;
+  }
+}
+.myAccountContainer .main .header {
+  margin-bottom: 2rem;
+}
+.myAccountContainer .main .header h1 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+.myAccountContainer .main .btnsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+@media screen and (max-width : 768px) {
+  .myAccountContainer .main .btnsContainer {
+    gap: 1rem;
+  }
+}
+.myAccountContainer .main .btnsContainer button {
+  font-size: 1rem;
+}
+.myAccountContainer .main .btnsContainer .btnActive {
+  background-color: red;
+  transform: scale(1.05);
+}
+
+/*# sourceMappingURL=dashboardComponent.module.css.map */
