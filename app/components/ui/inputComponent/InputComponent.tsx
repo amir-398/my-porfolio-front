@@ -7,6 +7,7 @@ interface InputComponentProps {
   placeholderText: string;
   register: any;
   errors: FieldErrors;
+  value?: string;
 }
 
 const InputComponent: React.FC<InputComponentProps> = ({
@@ -15,6 +16,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
   register,
   placeholderText,
   errors,
+  value,
 }) => {
   const errorMessage = errors[registerText]?.message || null;
   return (
@@ -29,6 +31,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
           type={type}
           name={registerText}
           placeholder={placeholderText}
+          value={value}
         />
       ) : (
         <textarea
